@@ -1,6 +1,6 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { LoginDTO } from './auth.dto';
+import { LoginDTO, RegisterDTO } from './auth.dto';
 import { AuthService } from './auth.service';
 
 @ApiTags('auth')
@@ -8,18 +8,16 @@ import { AuthService } from './auth.service';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
+  // そのemailのuserがいるか、また、passは正しいか判断して、OKだったら、jwtを返す
   @Post('login')
-  async login(@Body() loginDTO: LoginDTO): Promise<string> {
-    return await this.authService.login();
+  async login(@Body() loginDTO: LoginDTO): Promise<{ access_token: string }> {
+    return await this.authService.login(loginDTO);
   }
 
-  //   @Post()
-  //   async createUser(@Body() createUserDTO: CreateUserDTO): Promise<void> {
-  //     await this.usersService.createUser(createUserDTO);
-  //   }
-
-  //   @Get()
-  //   async getUser(): Promise<User[]> {
-  //     return await this.usersService.getUsers();
-  //   }
+  @Post('register')
+  async register(
+    @Body() registerDTO: RegisterDTO,
+  ): Promise<{ access_token: string }> {
+    return await this.authService.register(registerDTO);
+  }
 }

@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AppController } from './app.controller';
 import { UsersController } from './users/users.controller';
 import { User } from './users/users.entity';
 import { UsersModule } from './users/users.module';
@@ -27,11 +26,6 @@ import { AuthModule } from './auth/auth.module';
     TasksModule,
     AuthModule,
   ],
-  controllers: [
-    AppController,
-    UsersController,
-    TasksController,
-    AuthController,
-  ],
+  controllers: [UsersController, TasksController, AuthController],
 })
 export class AppModule {}

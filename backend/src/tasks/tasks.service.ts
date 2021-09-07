@@ -12,10 +12,14 @@ export class TasksService {
   ) {}
 
   async createTask(createTaskDTO: createTaskDTO): Promise<void> {
-    const task = new Task(createTaskDTO.name, createTaskDTO.description);
+    const task = new Task(
+      createTaskDTO.name,
+      createTaskDTO.description,
+      createTaskDTO.isPrivate,
+    );
     try {
       await this.tasksRepository.save(task);
-    } catch (e) {
+    } catch (e: any) {
       throw new BadRequestException(e.detail);
     }
   }

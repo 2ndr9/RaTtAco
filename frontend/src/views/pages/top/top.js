@@ -32,16 +32,23 @@ class top extends React.Component {
             </p>
           </form>
 
-          <Link
+          {/* <Link
             to="/ranking"
             id="toranking"
             className="button-wide-blue icon-crown"
           >
             ランキング
+          </Link> */}
+
+          <Link to="/tasks" id="totasks" className="button-wide-blue icon-run">
+            種目一覧
           </Link>
 
           <Link to="/record" id="toform">
-            <i class="fas fa-stopwatch"></i>
+            Let's
+            <br />
+            RTA!
+            {/* <i class="fas fa-stopwatch"></i> */}
           </Link>
         </section>
       </div>

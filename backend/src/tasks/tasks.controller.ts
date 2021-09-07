@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import {
+  Body,
+  Request,
+  Controller,
+  Get,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { ApiTags } from '@nestjs/swagger';
 import { createTaskDTO } from './tasks.dto';
 import { Task } from './tasks.entity';
@@ -10,11 +18,17 @@ export class TasksController {
   constructor(private readonly tasksService: TasksService) {}
 
   @Post()
-  async createTask(@Body() createTaskDTO: createTaskDTO): Promise<void> {
+  @UseGuards(AuthGuard('jwt'))
+  async createTask(
+    @Request() req: any,
+    @Body() createTaskDTO: createTaskDTO,
+  ): Promise<void> {
+    // const user = req.user;
     await this.tasksService.createTask(createTaskDTO);
   }
 
   @Get()
+  @UseGuards(AuthGuard('jwt'))
   async getTasks(): Promise<Task[]> {
     return await this.tasksService.getTasks();
   }

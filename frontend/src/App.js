@@ -1,8 +1,11 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import ScrollToTop from "./views/components/ScrollToTop";
+
 import top from "./views/pages/top/top";
 import record from "./views/pages/record/record";
+import tasks from "./views/pages/tasks/tasks";
 import ranking from "./views/pages/ranking/ranking.jsx";
 import Header from "./views/components/Header";
 import Footer from "./views/components/Footer";
@@ -30,11 +33,13 @@ class App extends React.Component {
         `}
           </script>
         </Helmet>
+        <ScrollToTop />
         <Header />
         <main>
           <Switch>
             <Route exact path="/" component={top} />
             <Route exact path="/record" component={record} />
+            <Route exact path="/tasks" component={tasks} />
             <Route exact path="/ranking" component={ranking} />
           </Switch>
         </main>

@@ -6,12 +6,11 @@
     justify-content: center;
     background-image: url("../../../img/theme/eyecatch.png");
     background-size: cover;
-    height: 9rem;
-    padding: 1rem;
+    height: 10rem;
     text-align: right;
     margin-bottom: 1rem;
     p {
-        padding: 1rem 0;
+        padding: 1rem;
         filter: drop-shadow(1px 1px 3px $white);
         background-color: rgba($white, .4);
     }
@@ -29,6 +28,7 @@ form {
         padding: .5rem 1rem;
         box-sizing: border-box;
         font-size: 1rem;
+        margin: 1rem 0;
         &:focus-visible {
             outline: none;
             filter: drop-shadow(0px 3px 5px  rgba($grey, .5));
@@ -42,7 +42,7 @@ form {
         font-size: 1.5rem;
         position: absolute;
         right: .3rem;
-        top: .3rem;
+        top: 1.3rem;
         background-color: transparent;
         border: none;
     }
