@@ -14,11 +14,11 @@ $blue: #3772FF;
 #root {
   display: grid;
   grid-template-rows: 5rem 1fr;
-  margin: 0 1rem 1rem;
+  grid-template-columns: 1rem 1fr 1rem;
 }
 
-
 header {
+  grid-column: 2;
   a {
     display: flex;
     margin: auto;
@@ -27,6 +27,10 @@ header {
     height: 5rem;
     width: 100%;
   }
+}
+
+main{
+  grid-column: 2;
 }
 
 .App-logo {

@@ -9,10 +9,11 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <Header />
-
-        <Switch>
+        <main>
+          <Switch>
           <Route exact path="/" component={top} />
-        </Switch>
+          </Switch>
+        </main>
       </BrowserRouter>
     );
   }
