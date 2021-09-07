@@ -4,26 +4,26 @@ import { IsEmail, IsNotEmpty } from 'class-validator';
 export class LoginDTO {
   @ApiProperty()
   @IsEmail()
-  email: string;
+  email!: string;
 
   @ApiProperty()
   @IsNotEmpty()
-  password: string;
+  password!: string;
 }
 
 export class RegisterDTO {
   @ApiProperty()
   @IsNotEmpty()
-  name: string;
+  name!: string;
 
   @ApiProperty()
-  bio: string;
+  bio!: string;
 
   @ApiProperty()
   @IsEmail()
-  email: string;
+  email!: string;
 
   @ApiProperty()
   @IsNotEmpty()
-  password: string;
+  password!: string;
 }

@@ -19,7 +19,7 @@ export class TasksService {
     );
     try {
       await this.tasksRepository.save(task);
-    } catch (e) {
+    } catch (e: any) {
       throw new BadRequestException(e.detail);
     }
   }

@@ -4,11 +4,11 @@ import { IsNotEmpty } from 'class-validator';
 export class createTaskDTO {
   @ApiProperty()
   @IsNotEmpty()
-  name: string;
+  name!: string;
 
   @ApiProperty()
-  description: string;
+  description!: string;
 
   @ApiProperty()
-  isPrivate: boolean;
+  isPrivate!: boolean;
 }

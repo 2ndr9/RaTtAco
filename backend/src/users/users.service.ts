@@ -22,12 +22,16 @@ export class UsersService {
   }
 
   async getMe(userID: User['id']): Promise<GetUserDTO> {
-    return await this.usersRepository.findOne({
+    const user = await this.usersRepository.findOne({
       where: {
         id: userID,
       },
       select: ['id', 'email', 'bio', 'name'],
     });
+    if (!user) {
+      throw new BadRequestException('no user found');
+    }
+    return user;
   }
 
   async getUsers(): Promise<User[]> {
