@@ -1,0 +1,16 @@
+.App-logo {
+  pointer-events: none;
+  width: 160px;
+}
+
+header {
+  grid-column: 2;
+  a {
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    align-items:center;
+    height: 5rem;
+    width: 100%;
+  }
+}
