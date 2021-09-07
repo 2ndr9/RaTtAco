@@ -1,27 +1,32 @@
+$black: #00171F;
+$grey: #7A868A;
+$white: #F4F4F4;
+$red: #E84855;
+$yellow: #F5DF4D;
+$blue: #3772FF;
+
 .App {
   text-align: center;
+  color: $black;
 }
 
 .App-logo {
-  height: 40vmin;
+  // background: url(./img/icon/logo.svg) no-repeat center center;
+  width: fit-content;
   pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+  img {
+    width: max-content;
   }
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: $white;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
 }
 
 .App-link {
