@@ -27,11 +27,26 @@ entity "UserTask" {
     end-time : Date
 
     --
-    UserID : number
-    TaskID : number
+    userID : number
+    taskID : number
+}
+
+entity "Tag"{
+    ID : number
+    name : string
+
+}
+
+entity "TaskTag"{
+    ID : number
+    --
+    taskID : number
+    tagID : number
 }
 
 UserTask ||..o{ User
 UserTask ||..o{ Task
 
+TaskTag ||..o{ Task
+TaskTag ||..o{ Tag 
 @enduml
