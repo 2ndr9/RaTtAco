@@ -40,7 +40,6 @@ function StopWatch() {
         <TimerButtons
           active={isActive}
           isPaused={isPaused}
-          handleStart={handleStart}
           handlePauseResume={handlePauseResume}
           handleReset={handleReset}
       />
