@@ -5,7 +5,7 @@ class record extends React.Component {
   render() {
     return (
       <div>
-        <p>遷移した</p>
+        <p>登録ページ</p>
       </div>
     );
   }

@@ -1,8 +1,10 @@
 import React from "react";
 import { RankingHead } from "./rankingHead";
 import { RankingList } from "./rankingList";
+import "./ranking.css"
 
-export const Ranking = () => {
+class ranking extends React.Component {
+  render() {
   return (
     <div>
       <RankingHead />
@@ -10,3 +12,6 @@ export const Ranking = () => {
     </div>
   );
 };
+}
+
+export default ranking;
