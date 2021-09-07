@@ -1,10 +1,12 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { UsersController } from './users/users.controller';
 import { User } from './users/users.entity';
 import { UsersModule } from './users/users.module';
+import { TasksController } from './tasks/tasks.controller';
+import { TasksModule } from './tasks/tasks.module';
+import { Task } from './tasks/tasks.entity';
 
 @Module({
   imports: [
@@ -15,12 +17,12 @@ import { UsersModule } from './users/users.module';
       username: 'rattaco-local',
       password: 'rattaco-pass',
       database: 'rattaco',
-      entities: [User],
+      entities: [User, Task],
       synchronize: true,
     }),
     UsersModule,
+    TasksModule,
   ],
-  controllers: [AppController, UsersController],
-  providers: [AppService],
+  controllers: [AppController, UsersController, TasksController],
 })
 export class AppModule {}
