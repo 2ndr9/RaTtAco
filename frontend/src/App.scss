@@ -5,18 +5,27 @@ $red: #E84855;
 $yellow: #F5DF4D;
 $blue: #3772FF;
 
+:root {
+  font-size: 16px;
+}
+
 .App {
   text-align: center;
   color: $black;
 }
 
-.App-logo {
-  // background: url(./img/icon/logo.svg) no-repeat center center;
-  width: fit-content;
-  pointer-events: none;
-  img {
-    width: max-content;
+header {
+  height: 4rem;
+
+  a {
+    height: 4rem;
+    width: 100%;
   }
+}
+
+.App-logo {
+  pointer-events: none;
+  width: 160px;
 }
 
 .App-header {
@@ -31,13 +40,4 @@ $blue: #3772FF;
 
 .App-link {
   color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
