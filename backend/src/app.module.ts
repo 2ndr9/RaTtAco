@@ -7,6 +7,9 @@ import { UsersModule } from './users/users.module';
 import { TasksController } from './tasks/tasks.controller';
 import { TasksModule } from './tasks/tasks.module';
 import { Task } from './tasks/tasks.entity';
+import { AuthService } from './auth/auth.service';
+import { AuthController } from './auth/auth.controller';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -22,7 +25,13 @@ import { Task } from './tasks/tasks.entity';
     }),
     UsersModule,
     TasksModule,
+    AuthModule,
   ],
-  controllers: [AppController, UsersController, TasksController],
+  controllers: [
+    AppController,
+    UsersController,
+    TasksController,
+    AuthController,
+  ],
 })
 export class AppModule {}
