@@ -17,23 +17,14 @@ $blue: #3772FF;
   grid-template-columns: 1rem 1fr 1rem;
 }
 
-header {
-  grid-column: 2;
-  a {
-    display: flex;
-    margin: auto;
-    justify-content: center;
-    align-items:center;
-    height: 5rem;
-    width: 100%;
-  }
-}
-
 main{
-  grid-column: 2;
-}
+  grid-column: 1 / -1;
 
-.App-logo {
-  pointer-events: none;
-  width: 160px;
+  > div > * {
+    margin: 0 1rem;
+  }
+
+  > div > .full-width {
+    margin: 0;
+  }
 }
