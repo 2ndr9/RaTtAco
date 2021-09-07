@@ -23,6 +23,10 @@ class top extends React.Component {
           </p>
         </form>
 
+        <Link to="/ranking" id="toranking">
+          ランキング
+        </Link>
+
         <Link to="/record" id="toform">
           +
         </Link>
