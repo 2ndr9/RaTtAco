@@ -9,16 +9,24 @@ $blue: #3772FF;
   font-size: 16px;
 }
 
+#root {
+  display: grid;
+  grid-template-rows: 5rem 1fr;
+  margin: 0 1rem 1rem;
+}
+
 .App {
   text-align: center;
   color: $black;
 }
 
 header {
-  height: 4rem;
-
   a {
-    height: 4rem;
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    align-items:center;
+    height: 5rem;
     width: 100%;
   }
 }
