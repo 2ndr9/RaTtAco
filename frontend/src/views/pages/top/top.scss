@@ -17,23 +17,38 @@
     }
 }
 
-form input {
-    border: none;
-    filter: drop-shadow(0px 2px 3px rgba($grey, .5));
-    transition: .2s;
-    width: 100%;
-    height: 2.5rem;
-    border-radius: 1.25rem;
-    padding: .5rem 1rem;
-    box-sizing: border-box;
-    font-size: 1rem;
-
-    &:focus-visible {
-        outline: none;
-        filter: drop-shadow(0px 3px 5px  rgba($grey, .5));
+form {
+    position: relative;
+    input {
+        border: none;
+        filter: drop-shadow(0px 2px 3px rgba($grey, .5));
+        transition: .2s;
+        width: 100%;
+        height: 2.5rem;
+        border-radius: 1.25rem;
+        padding: .5rem 1rem;
+        box-sizing: border-box;
+        font-size: 1rem;
+        &:focus-visible {
+            outline: none;
+            filter: drop-shadow(0px 3px 5px  rgba($grey, .5));
+        }
+    }
+    button[type="submit"] {
+        color: $grey;
+        content: "\f002";
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        font-size: 1.5rem;
+        position: absolute;
+        right: .3rem;
+        top: .3rem;
+        background-color: transparent;
+        border: none;
     }
 }
 
 #toranking {
     text-decoration: none;
 }
+

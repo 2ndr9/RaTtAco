@@ -17,19 +17,31 @@ class top extends React.Component {
           <p>
             料理するのがめんどくさいんんじゃあああああああああああああああああああというそこのあなたに！今から15分で作り切りませんか？家事をなんでもタイムアタックにRaTtAco！
           </p>
-
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime,
+            delectus ex quaerat numquam fugiat saepe doloremque rem molestiae
+            architecto quisquam, exercitationem ducimus officia aperiam illo,
+            quam debitis eos dicta expedita.
+          </p>
           <form method="POST" action="/">
             <p>
               <input type="text" />
+              <button type="submit">
+                <i class="fas fa-search"></i>
+              </button>
             </p>
           </form>
 
-          <Link to="/ranking" id="toranking" className="button-wide-blue">
+          <Link
+            to="/ranking"
+            id="toranking"
+            className="button-wide-blue icon-crown"
+          >
             ランキング
           </Link>
 
           <Link to="/record" id="toform">
-            +
+            <i class="fas fa-stopwatch"></i>
           </Link>
         </section>
       </div>

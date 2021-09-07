@@ -5,6 +5,7 @@ import top from "./views/pages/top/top";
 import record from "./views/pages/record/record";
 import ranking from "./views/pages/ranking/ranking.jsx";
 import Header from "./views/components/Header";
+import Footer from "./views/components/Footer";
 import "./App.scss";
 
 class App extends React.Component {
@@ -12,6 +13,10 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <Helmet>
+          <script
+            src="https://kit.fontawesome.com/bdacb9a226.js"
+            crossorigin="anonymous"
+          ></script>
           <script>
             {`
           (function(d) {
@@ -33,6 +38,7 @@ class App extends React.Component {
             <Route exact path="/ranking" component={ranking} />
           </Switch>
         </main>
+        <Footer />
       </BrowserRouter>
     );
   }
