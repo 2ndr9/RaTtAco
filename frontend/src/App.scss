@@ -8,11 +8,13 @@
 
 #root {
   display: grid;
-  grid-template-rows: 5rem 1fr;
   grid-template-columns: 1rem 1fr 1rem;
 }
 
+
+
 main{
+  margin-top: 5rem;
   grid-column: 1 / -1;
 
   > div > * {
