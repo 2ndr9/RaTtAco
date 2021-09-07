@@ -1,43 +1,43 @@
-$black: #00171F;
-$grey: #7A868A;
-$white: #F4F4F4;
-$red: #E84855;
-$yellow: #F5DF4D;
-$blue: #3772FF;
+@import "color";
 
-.App {
-  text-align: center;
+:root {
+  font-size: 16px;
+  background-color: $white;
   color: $black;
 }
 
-.App-logo {
-  // background: url(./img/icon/logo.svg) no-repeat center center;
-  width: fit-content;
-  pointer-events: none;
-  img {
-    width: max-content;
+#root {
+  display: grid;
+  grid-template-rows: 5rem 1fr;
+  grid-template-columns: 1rem 1fr 1rem;
+}
+
+main{
+  grid-column: 1 / -1;
+
+  > div > * {
+    margin: 0 1rem;
+  }
+
+  > div > .full-width {
+    margin: 0;
   }
 }
 
-.App-header {
-  background-color: $white;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+@mixin button($bgcolor: $red, $textcolor: $white, $width: 100%) {
+  display: block;
+  padding: .5rem 1rem;
+  box-sizing: border-box;
+  background-color: $bgcolor;
+  color: $textcolor;
+  width: $width;
+  height: 2.5rem;
+  border-bottom: 3px solid darken($bgcolor, 10);
+  border-radius: 1.25rem;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+.button-wide {
+  &-blue {
+    @include button($bgcolor: $blue)
   }
 }
