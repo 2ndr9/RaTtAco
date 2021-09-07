@@ -1,0 +1,167 @@
+@startuml er
+
+' hide the spot
+hide circle
+
+' avoid problems with angled crows feet
+' skinparam linetype ortho
+
+entity "User" {
+    ID : number
+    name : string
+    bio : string
+    email : Email
+    password : string
+}
+
+entity "Task" {
+    ID : number
+    name : string
+    description : string
+}
+
+entity "UserTask" {
+    ID : number
+    start-time : Date
+    end-time : Date
+
+    --
+    UserID : number
+    TaskID : number
+}
+
+UserTask ||..o{ User
+UserTask ||..o{ Task
+
+
+
+' entity "Project"  {
+'     + ID: integer
+'     title : string
+'     description: string
+'     created: Date
+'     updated:Date
+'     isPrivate: Bool
+'     --
+'     # creator:UserID 
+' }
+
+' entity "Branch" {
+'     + ID:integer
+'     title: string
+'     depth: integer
+'     created:Date
+'     updated:Date
+'     isMain: Bool
+'     --
+'     # ProjectID: ProjectID 
+'     # creator:UserID 
+' }
+' note as note3
+'     branchに対するfollowいる？
+' end note
+' Branch .. note3
+
+' entity "Commit" {
+'     +ID :integer
+'     title:string
+'     message:string
+'     isMarkuped: Bool
+'     isAnswer:Bool
+'     deleted:Bool
+'     order: integer
+'     created:Date
+'     updated:Date
+'     --
+'     # creator:UserID 
+'     # branch: BranchID 
+' }
+' note as note2
+'     orderは親commitに対するcommitの順番
+'     createdDateでとれるけど
+
+'     orderあったらisParent(最初のcommit(親commit))いらない
+' end note
+' Commit .. note2
+
+' entity "CommitReaction"{
+'     +ID :integer
+'     emoji:string
+'     created:Date
+'     updated:Date
+'     --
+'     # creator: UserID 
+'     # reactedCommit: commitID 
+' }
+' note "emojiの扱い" as note1
+' CommitReaction .. note1
+
+
+' entity "User" {
+'     + ID:integer
+'     name:string
+'     bio:string
+'     twitter:string
+'     icon:URL
+'     auth: ???
+' }
+' note as note4
+'     Authどうするか
+' end note
+' User .. note4
+
+' entity "ContributeProject"{
+'     + ID:integer
+'     --
+'     # ProjectID:integer 
+'     # UserID:integer 
+' }
+
+' entity "FollowProject" {
+'     + ID:integer
+'     --
+'     # ProjectID:integer 
+'     # UserID:integer 
+' }
+
+' entity "FollowBranch" {
+'     + ID:integer
+'     --
+'     # BranchID:integer 
+'     # UserID:integer 
+' }
+
+' entity "lastVisited" {
+'     + ID: integer
+'     visitedDate: Date
+'     --
+'     # UserID:integer 
+'     # ProjectID:integer 
+' }
+
+
+' Project ||..o{ FollowProject
+' Project ||..o{ ContributeProject
+
+
+' User ||..o{ FollowProject
+' User ||..o{ ContributeProject
+' User ||..o{ Branch
+' User ||..o{ Commit
+' User ||..o{ CommitReaction
+' User ||..o{ Project
+
+
+' Project  ||..|{ Branch 
+
+' Branch ||..o{ FollowBranch
+' User ||..o{ FollowBranch
+
+' Branch ||..o{ Commit
+
+' Commit ||..o{ CommitReaction
+
+' Project ||..o{ lastVisited
+' User ||..o{ lastVisited
+
+@enduml
