@@ -7,6 +7,8 @@ $blue: #3772FF;
 
 :root {
   font-size: 16px;
+  background-color: $white;
+  color: $black;
 }
 
 #root {
@@ -15,10 +17,6 @@ $blue: #3772FF;
   margin: 0 1rem 1rem;
 }
 
-.App {
-  text-align: center;
-  color: $black;
-}
 
 header {
   a {
@@ -34,18 +32,4 @@ header {
 .App-logo {
   pointer-events: none;
   width: 160px;
-}
-
-.App-header {
-  background-color: $white;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-}
-
-.App-link {
-  color: #61dafb;
 }

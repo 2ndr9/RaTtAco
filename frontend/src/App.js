@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { Link } from "react-router-dom";
 import top from "./views/pages/top/top";
 import Header from "./views/components/Header";
 import "./App.scss";
