@@ -14,7 +14,7 @@ import { UsersModule } from './users/users.module';
       port: 3306,
       username: 'rattaco-local',
       password: 'rattaco-pass',
-      database: 'test',
+      database: 'rattaco',
       entities: [User],
       synchronize: true,
     }),
