@@ -12,6 +12,7 @@ export class User {
   bio: string;
 
   @Column()
+  // unique
   email: string;
 
   @Column()

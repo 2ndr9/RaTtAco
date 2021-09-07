@@ -1,31 +1,36 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CreateUserDTO } from './users.dto';
 import { User } from './users.entity';
+import * as bcrypt from 'bcrypt';
+import { RegisterDTO } from 'src/auth/auth.dto';
+import { GetUserDTO } from './users.dto';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User)
-    private readonly usresRepository: Repository<User>,
+    private readonly usersRepository: Repository<User>,
   ) {}
 
-  async createUser(createUserDTO: CreateUserDTO): Promise<void> {
-    const user = new User(
-      createUserDTO.name,
-      createUserDTO.bio,
-      createUserDTO.email,
-      createUserDTO.password,
-    );
-    try {
-      await this.usresRepository.save(user);
-    } catch (e) {
-      throw new BadRequestException(e.detail);
-    }
+  async findOne(email: string): Promise<User | undefined> {
+    return this.usersRepository.findOne({
+      where: {
+        email: email,
+      },
+    });
+  }
+
+  async getMe(userID: User['id']): Promise<GetUserDTO> {
+    return await this.usersRepository.findOne({
+      where: {
+        id: userID,
+      },
+      select: ['id', 'email', 'bio', 'name'],
+    });
   }
 
   async getUsers(): Promise<User[]> {
-    return await this.usresRepository.find();
+    return await this.usersRepository.find();
   }
 }

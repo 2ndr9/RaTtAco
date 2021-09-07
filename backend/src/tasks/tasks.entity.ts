@@ -11,10 +11,15 @@ export class Task {
   name: string;
 
   @Column()
+  @IsNotEmpty()
+  isPrivate: boolean;
+
+  @Column()
   description: string;
 
-  constructor(name: string, description: string) {
+  constructor(name: string, description: string, isPrivate: boolean) {
     this.name = name;
     this.description = description;
+    this.isPrivate = isPrivate;
   }
 }

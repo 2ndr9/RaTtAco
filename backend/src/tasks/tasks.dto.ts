@@ -8,4 +8,7 @@ export class createTaskDTO {
 
   @ApiProperty()
   description: string;
+
+  @ApiProperty()
+  isPrivate: boolean;
 }
