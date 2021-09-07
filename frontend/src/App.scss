@@ -19,13 +19,14 @@ main{
     margin: 0 1rem;
   }
 
-  > div > .full-width {
+  .full-width {
     margin: 0;
   }
 }
 
 @mixin button($bgcolor: $red, $textcolor: $white, $width: 100%) {
   display: block;
+  text-decoration: none;
   padding: .5rem 1rem;
   box-sizing: border-box;
   background-color: $bgcolor;
@@ -37,16 +38,27 @@ main{
   text-align: center;
   line-height: 1.4;
   font-weight: 500;
+  margin-bottom: 1rem;
 }
 
 .button-wide {
   &-blue {
     @include button($bgcolor: $blue)
   }
+  &-red {
+    @include button($bgcolor: $red)
+  }
 }
 .icon-crown::before {
   font-family: "Font Awesome 5 Free";
   content: "\f521";
+  font-weight: 900;
+  margin-right: .5rem;
+  color: $yellow;
+}
+.icon-run::before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f70c";
   font-weight: 900;
   margin-right: .5rem;
 }
