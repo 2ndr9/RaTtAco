@@ -1,5 +1,5 @@
-import React from "react";
-import Timer from '../../components/Timer';
+import React, { Component }  from "react";
+import StopWatch from '../../components/StopWatch';
 import { Link } from "react-router-dom";
 
 class record extends React.Component {
@@ -50,19 +50,12 @@ class record extends React.Component {
             <p> 
               <input name="end" type="time" value={this.state.end} onChange={this.handleInputChange} step="1"/>
             </p>
-            <p>
-              
-            </p>
         </form>
 
         <Link to={'/ranking/' + this.state.task}>登録</Link>
 
-        <Timer ref={this.timerEvent}/>
-        <div>
-          <button text='start' handleClick={() => this.ref.timer.start()} />
-          <button text='stop' handleClick={() => this.ref.timer.stop()} />
-          <button text='reset' handleClick={() => this.ref.timer.reset()} />
-        </div>
+        <StopWatch />
+
       </div>
     );
   }
