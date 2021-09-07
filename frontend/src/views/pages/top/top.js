@@ -13,23 +13,25 @@ class top extends React.Component {
             日常生活RTA(リアル･タイム･アタック)アプリ
           </p>
         </section>
-        <p>
-          料理するのがめんどくさいんんじゃあああああああああああああああああああというそこのあなたに！今から15分で作り切りませんか？家事をなんでもタイムアタックにRaTtAco！
-        </p>
-
-        <form method="POST" action="/">
+        <section>
           <p>
-            <input type="text" />
+            料理するのがめんどくさいんんじゃあああああああああああああああああああというそこのあなたに！今から15分で作り切りませんか？家事をなんでもタイムアタックにRaTtAco！
           </p>
-        </form>
 
-        <Link to="/ranking" id="toranking">
-          ランキング
-        </Link>
+          <form method="POST" action="/">
+            <p>
+              <input type="text" />
+            </p>
+          </form>
 
-        <Link to="/record" id="toform">
-          +
-        </Link>
+          <Link to="/ranking" id="toranking" className="button-wide-blue">
+            ランキング
+          </Link>
+
+          <Link to="/record" id="toform">
+            +
+          </Link>
+        </section>
       </div>
     );
   }
