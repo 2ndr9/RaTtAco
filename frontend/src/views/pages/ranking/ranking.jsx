@@ -7,7 +7,7 @@ class ranking extends React.Component {
   render() {
   return (
     <div>
-      <SubpageHead title="Make Yakisoba" name="tasks" />
+      <SubpageHead title="Make Yakisoba" name="tasks" categoryTag="cooking" />
       <RankingList />
     </div>
   );
