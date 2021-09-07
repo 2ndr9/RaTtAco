@@ -1,0 +1,53 @@
+@import "../../../color.scss";
+
+#taskList {
+    margin-top: 2rem;
+}
+
+.taskCard {
+    margin-bottom: 1rem;
+    border-radius: 1rem;
+    background-color: $white;
+    filter: drop-shadow(0 1px 2px $grey);
+    transition: .2s;
+
+    &:hover {
+        filter: drop-shadow(0 2px 3px rgba($grey, .7));
+    }
+
+    div {
+        border-radius: 1rem;
+        padding: .5rem 1rem;
+        background-repeat: no-repeat;
+        background-position: right center;
+        background-color:rgba($white,0.95);
+        background-size: 60%;
+        background-blend-mode:lighten;
+    }
+    a {
+        margin-bottom: .75rem;
+    }
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin: 0;
+}
+
+
+p {
+    margin: 0 0 1rem;
+}
+
+.cleaning div {
+    background-image: url(../../../img/icon/cleaning.svg);
+}
+
+.cooking div {
+    background-image: url(../../../img/icon/cooking.svg);
+}
+
+.washing div {
+    background-image: url(../../../img/icon/washing.svg);
+}

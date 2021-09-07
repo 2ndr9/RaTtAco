@@ -1,0 +1,20 @@
+@import "../../color.scss";
+
+.header_subpage {
+    height: 10rem;
+    color: $white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    h1 {
+        text-align: center;
+        background-color: rgba($black, .5);
+        font-size: 1.7rem;
+        font-weight: 400;
+    }
+    &.tasks {
+        background-image: url(../../img/theme/tasks.jpg);
+        background-size: cover;
+        background-position: 0 -20px;
+    }
+}
