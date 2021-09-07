@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { UserTask } from 'src/intermediateTables/userTask.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity('users')
 export class User {
@@ -11,18 +12,21 @@ export class User {
   @Column()
   bio: string;
 
-  @Column()
-  // unique
+  @Column({ unique: true })
   email: string;
 
   @Column()
   password: string;
 
+  @OneToMany(() => UserTask, (userTask) => userTask.user)
+  userTask: UserTask[];
+
   constructor(name: string, bio: string, email: string, password: string) {
     this.name = name;
     this.bio = bio;
     this.email = email;
-    // ハッシュ化したい〜
     this.password = password;
+    // userを作る時点では、そのuserはなにももっていない
+    this.userTask = [];
   }
 }

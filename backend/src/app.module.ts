@@ -9,6 +9,8 @@ import { Task } from './tasks/tasks.entity';
 import { AuthService } from './auth/auth.service';
 import { AuthController } from './auth/auth.controller';
 import { AuthModule } from './auth/auth.module';
+import { TagsController } from './tags/tags.controller';
+import { TagsModule } from './tags/tags.module';
 
 @Module({
   imports: [
@@ -25,7 +27,8 @@ import { AuthModule } from './auth/auth.module';
     UsersModule,
     TasksModule,
     AuthModule,
+    TagsModule,
   ],
-  controllers: [UsersController, TasksController, AuthController],
+  controllers: [UsersController, TasksController, AuthController, TagsController],
 })
 export class AppModule {}

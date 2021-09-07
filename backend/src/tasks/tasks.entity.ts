@@ -1,5 +1,5 @@
-import { IsNotEmpty } from 'class-validator';
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { UserTask } from 'src/intermediateTables/userTask.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity('tasks')
 export class Task {
@@ -7,19 +7,21 @@ export class Task {
   id!: number;
 
   @Column()
-  @IsNotEmpty()
   name: string;
 
   @Column()
-  @IsNotEmpty()
   isPrivate: boolean;
 
   @Column()
   description: string;
 
+  @OneToMany(() => UserTask, (userTask) => userTask.task)
+  userTask: UserTask[];
+
   constructor(name: string, description: string, isPrivate: boolean) {
     this.name = name;
     this.description = description;
     this.isPrivate = isPrivate;
+    this.userTask=
   }
 }
