@@ -41,7 +41,10 @@ class top extends React.Component {
           </Link>
 
           <Link to="/record" id="toform">
-            <i class="fas fa-stopwatch"></i>
+            Let's
+            <br />
+            RTA!
+            {/* <i class="fas fa-stopwatch"></i> */}
           </Link>
         </section>
       </div>

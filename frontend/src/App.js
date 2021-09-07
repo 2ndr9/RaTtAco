@@ -1,6 +1,8 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import ScrollToTop from "./views/components/ScrollToTop";
+
 import top from "./views/pages/top/top";
 import record from "./views/pages/record/record";
 import ranking from "./views/pages/ranking/ranking.jsx";
@@ -30,6 +32,7 @@ class App extends React.Component {
         `}
           </script>
         </Helmet>
+        <ScrollToTop />
         <Header />
         <main>
           <Switch>
