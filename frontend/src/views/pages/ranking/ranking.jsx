@@ -1,13 +1,15 @@
 import React from "react";
-import { RankingHead } from "./rankingHead";
+import SubpageHead from "../../components/SubpageHead";
 import { RankingList } from "./rankingList";
-import "./ranking.css"
+import TagList from "./tagList";
+import "./ranking.scss"
 
 class ranking extends React.Component {
   render() {
   return (
     <div>
-      <RankingHead />
+      <SubpageHead title="Make Yakisoba" name="tasks" categoryTag="cooking" />
+      <TagList />
       <RankingList />
     </div>
   );

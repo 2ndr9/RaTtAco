@@ -1,0 +1,72 @@
+@import "../../../color.scss";
+.tagWrapper {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .8rem;
+    counter-reset: rank;
+}
+#ranking {
+    margin-top: 1.5rem;
+}
+.CardContainer {
+    box-sizing: border-box;
+    background-color: $white;
+    margin-bottom: 1rem;
+    // border: 1px solid #000;
+    border-radius: .3rem;
+    filter: drop-shadow(0 2px 2px rgba($grey, .5));
+    padding: 1rem;
+    font-family: din-2014, ryo-gothic-plusn, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;;
+    font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 1;
+    font-style: italic;
+    display: grid;
+    grid-template-columns: max-content 1fr max-content;
+    &:hover {
+        filter: drop-shadow(0 3px 4px rgba($grey, .3));
+    }
+    &:first-child {
+        background-color: $yellow;
+    }
+    &:nth-child(2) {
+        background-color: mix($grey, $white);
+    }
+    &:nth-child(3) {
+        background-color: mix($red, $yellow);
+    }
+}
+.CardContainer::before {
+    content: counter(rank);
+    counter-increment: rank;
+    margin-right: 1rem;
+}
+.tag {
+    line-height: 1;
+    color: $grey;
+    text-decoration: none;
+    color: $black;
+    background-color: $white;
+    border-radius: 1rem;
+    padding: .5rem .8rem;
+    filter: drop-shadow(0 1px 1px rgba($grey, .5));
+    transition: .2s;
+    &::before {
+        font-family: "Font Awesome 5 Free";
+        content: "\f292";
+        font-weight: 900;
+        color: $blue;
+        margin-right: .5rem;
+    }
+    &:hover {
+        filter: drop-shadow(0 2px 2px rgba($grey, .3));
+    }
+    &.category {
+        width: fit-content;
+        margin: 0 auto;
+        &:before {
+            color: $red;
+        }
+    }
+}
