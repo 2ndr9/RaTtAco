@@ -25,7 +25,7 @@ export class TasksController {
     @Request() req: any,
     @Body() createTaskDTO: createTaskDTO,
   ): Promise<void> {
-    // const user = req.user;
+    // user情報taskにcreatorつけてないから、いらないっちゃいらない
     await this.tasksService.createTask(createTaskDTO);
   }
 
@@ -34,19 +34,15 @@ export class TasksController {
     return await this.tasksService.getTasks();
   }
 
-  @Get('hoge')
-  hoge() {
-    let a = new Date();
+  // @Get('hoge')
+  // hoge() {
+  //   let a = new Date();
 
-    const c = setTimeout(() => {
-      const b = new Date();
-      console.log(a.getTime() - b.getTime());
-    }, 5000);
-  }
-
-  // @Post(':taskID/record')
-  // @ApiParam({ name: 'taskID' })
-  // postRecord;
+  //   const c = setTimeout(() => {
+  //     const b = new Date();
+  //     console.log(a.getTime() - b.getTime());
+  //   }, 5000);
+  // }
 
   @Get('ranking/:taskID')
   @ApiParam({ name: 'taskID' })

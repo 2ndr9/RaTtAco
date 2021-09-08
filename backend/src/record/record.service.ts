@@ -1,6 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Task } from 'src/tasks/tasks.entity';
+import { TasksService } from 'src/tasks/tasks.service';
 import { Repository } from 'typeorm';
 import { PostEndTimeDTO } from './record.dto';
 import { UserTask } from './userTask.entity';
@@ -10,25 +11,41 @@ export class RecordService {
   constructor(
     @InjectRepository(UserTask)
     private readonly userTaskRepository: Repository<UserTask>,
+    private readonly tasksService: TasksService,
   ) {}
 
-  async upsertUserTaskAndInsertStartTime(
+  async createUserTaskAsNeededAndInsertStartTime(
     startTime: Date,
     userID: string,
     taskID: number,
   ): Promise<void> {
-    const task = await this.userTaskRepository.findOne({
+    const task = await this.tasksService.findOne(taskID);
+    if (!task) throw new BadRequestException('そのtaskIDのtaskはないよ〜');
+
+    // Date型だとミリ秒ない説
+    // Date型だとミリ秒ない説
+    // Date型だとミリ秒ない説
+    // Date型だとミリ秒ない説
+    // Date型だとミリ秒ない説
+    // Date型だとミリ秒ない説
+    // Date型だとミリ秒ない説
+    // Date型だとミリ秒ない説
+    // Date型だとミリ秒ない説
+    // Date型だとミリ秒ない説
+    // Date型だとミリ秒ない説
+    // Date型だとミリ秒ない説
+    // Date型だとミリ秒ない説
+
+    const userTask = await this.userTaskRepository.findOne({
       where: { taskID: taskID, userID: userID },
     });
-    if (!task) {
-      const userTask = new UserTask(userID, taskID);
-      await this.userTaskRepository.save(userTask);
-      userTask.startTime = startTime;
-      await this.userTaskRepository.save(userTask);
+    if (!userTask) {
+      const newUserTask = new UserTask(userID, taskID, startTime);
+      await this.userTaskRepository.save(newUserTask);
     } else {
-      task.startTime = startTime;
-      // これでいけるんだっけ？
-      await this.userTaskRepository.save(task);
+      await this.userTaskRepository.update(userTask.id, {
+        startTime: startTime,
+      });
     }
   }
 
@@ -41,8 +58,9 @@ export class RecordService {
       where: { taskID: taskID, userID: userID },
     });
     if (!task) throw new BadRequestException('そのidのtaskはないよ〜');
-    task.endTime = endTime;
-    // これでいけるんだっけ？
-    await this.userTaskRepository.save(task);
+
+    await this.userTaskRepository.update(taskID, {
+      endTime: endTime,
+    });
   }
 }

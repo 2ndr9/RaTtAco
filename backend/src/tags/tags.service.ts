@@ -22,17 +22,23 @@ export class TagsService {
     const task = await this.taskService.findOne(taskID);
     if (!task) throw new BadRequestException('そのtaskIDのtaskはないよ〜');
 
-    const tag = await this.tagsRepository.findOne({
+    const existingTag = await this.tagsRepository.findOne({
       where: {
         name: tagName,
       },
     });
-    if (!tag) {
-      const newTag = new Tag(tagName);
-      const savedNewTag = await this.tagsRepository.save(newTag);
-      const tagTask = new TagTask(savedNewTag.id, taskID);
-      await this.tagTaskRepository.save(tagTask);
-    } else {
+
+    // あったらそのまま、なかったらつくったtag
+    const tag = existingTag
+      ? existingTag
+      : await this.tagsRepository.save(new Tag(tagName));
+
+    const existingTagTask = await this.tagTaskRepository.findOne({
+      where: { tagID: tag.id, taskID: taskID },
+    });
+
+    // TagTaskがない場合のみ、つくる
+    if (!existingTagTask) {
       const tagTask = new TagTask(tag.id, taskID);
       await this.tagTaskRepository.save(tagTask);
     }

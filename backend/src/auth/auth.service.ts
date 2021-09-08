@@ -24,7 +24,7 @@ export class AuthService {
     const user = await this.usersService.findOne(loginDTO.userID);
 
     if (!user) {
-      throw new BadRequestException('invalid email');
+      throw new BadRequestException('invalid userID');
     } else if (!(await bcrypt.compare(loginDTO.password, user.password))) {
       throw new UnauthorizedException('invalid password');
     } else {
@@ -37,15 +37,20 @@ export class AuthService {
   }
 
   async register(registerDTO: RegisterDTO): Promise<{ access_token: string }> {
+    const user = await this.usersRepository.findOne({
+      where: { userID: registerDTO.userID },
+    });
+    if (user) throw new BadRequestException('そのuserIDはすでに使われているよ');
+
     const hashedPass = await bcrypt.hash(registerDTO.password, 10);
-    const user = new User(
+    const newUser = new User(
       registerDTO.name,
       registerDTO.bio,
       registerDTO.userID,
       hashedPass,
     );
     try {
-      const savedUser = await this.usersRepository.save(user);
+      const savedUser = await this.usersRepository.save(newUser);
       const payload = { userID: savedUser.userID };
       return {
         access_token: this.jwtService.sign(payload),

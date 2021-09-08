@@ -2,6 +2,7 @@ import { Task } from 'src/tasks/tasks.entity';
 import {
   Column,
   Entity,
+  Index,
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
@@ -9,6 +10,7 @@ import {
 import { Tag } from './tags.entity';
 
 @Entity('tagTask')
+@Index(['tagID', 'taskID'], { unique: true })
 export class TagTask {
   @PrimaryGeneratedColumn()
   id!: number;

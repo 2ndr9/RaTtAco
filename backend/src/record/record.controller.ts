@@ -1,4 +1,11 @@
-import { Body, Controller, Post, Request, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Post,
+  Put,
+  Request,
+  UseGuards,
+} from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { PostEndTimeDTO, PostStartTimeDTO } from './record.dto';
@@ -9,7 +16,7 @@ import { RecordService } from './record.service';
 export class RecordController {
   constructor(private readonly recordService: RecordService) {}
 
-  @Post('startTime')
+  @Put('startTime')
   @ApiBearerAuth()
   @UseGuards(AuthGuard('jwt'))
   async postStartTime(
@@ -17,14 +24,14 @@ export class RecordController {
     @Body() postStartTimeDTO: PostStartTimeDTO,
   ): Promise<void> {
     const user = req.user;
-    await this.recordService.upsertUserTaskAndInsertStartTime(
+    await this.recordService.createUserTaskAsNeededAndInsertStartTime(
       postStartTimeDTO.startTime,
       user.userID,
       postStartTimeDTO.taskID,
     );
   }
 
-  @Post('endTime')
+  @Put('endTime')
   @ApiBearerAuth()
   @UseGuards(AuthGuard('jwt'))
   async postEndTime(

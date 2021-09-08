@@ -18,7 +18,7 @@ export class UserTask {
   @Column()
   startTime!: Date;
 
-  @Column()
+  @Column({ nullable: true })
   endTime!: Date;
 
   @Column()
@@ -37,8 +37,9 @@ export class UserTask {
   // !でいいのか？
   task!: Task;
 
-  constructor(userID: string, taskID: number) {
+  constructor(userID: string, taskID: number, startTime: Date) {
     this.userID = userID;
     this.taskID = taskID;
+    this.startTime = startTime;
   }
 }
