@@ -22,20 +22,6 @@ export class RecordService {
     const task = await this.tasksService.findOne(taskID);
     if (!task) throw new BadRequestException('そのtaskIDのtaskはないよ〜');
 
-    // Date型だとミリ秒ない説
-    // Date型だとミリ秒ない説
-    // Date型だとミリ秒ない説
-    // Date型だとミリ秒ない説
-    // Date型だとミリ秒ない説
-    // Date型だとミリ秒ない説
-    // Date型だとミリ秒ない説
-    // Date型だとミリ秒ない説
-    // Date型だとミリ秒ない説
-    // Date型だとミリ秒ない説
-    // Date型だとミリ秒ない説
-    // Date型だとミリ秒ない説
-    // Date型だとミリ秒ない説
-
     const userTask = await this.userTaskRepository.findOne({
       where: { taskID: taskID, userID: userID },
     });

@@ -6,10 +6,17 @@ import {
   Post,
   UseGuards,
   HttpStatus,
+  Param,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiBearerAuth, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { createTaskDTO, GetRanking } from './tasks.dto';
+import {
+  ApiBearerAuth,
+  ApiOperation,
+  ApiParam,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
+import { createTaskDTO, GetRankingDTO } from './tasks.dto';
 import { Task } from './tasks.entity';
 import { TasksService } from './tasks.service';
 
@@ -30,6 +37,7 @@ export class TasksController {
   }
 
   @Get()
+  @ApiOperation({ deprecated: true })
   async getTasks(): Promise<Task[]> {
     return await this.tasksService.getTasks();
   }
@@ -47,13 +55,14 @@ export class TasksController {
   @Get('ranking/:taskID')
   @ApiParam({ name: 'taskID' })
   @ApiResponse({
-    type: GetRanking,
+    type: GetRankingDTO,
     status: HttpStatus.OK,
     description: 'ソートして返すよ〜',
   })
-  async getRanking(): Promise<GetRanking> {
-    const data: GetRanking = {
+  async getRanking(@Param('taskID') taskID: number): Promise<GetRankingDTO> {
+    const data: GetRankingDTO = {
       taskName: 'make yakisoba',
+      description: 'やきそばをつくるよ！！材料は…',
       taskID: 1,
       tags: [
         {
@@ -86,6 +95,7 @@ export class TasksController {
         },
       ],
     };
+    await this.tasksService.getRanking(taskID);
     return data;
   }
 }

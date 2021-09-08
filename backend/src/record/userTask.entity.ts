@@ -10,7 +10,6 @@ import {
 } from 'typeorm';
 
 @Entity('UserTask')
-@Index(['userID', 'taskID'], { unique: true })
 export class UserTask {
   @PrimaryGeneratedColumn()
   id!: number;

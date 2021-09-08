@@ -29,11 +29,13 @@ export class RecordOfGetRanking {
   durationTime!: number;
 }
 
-export class GetRanking {
+export class GetRankingDTO {
   @ApiProperty()
   taskName!: string;
   @ApiProperty()
   taskID!: number;
+  @ApiProperty()
+  description!: string;
   @ApiProperty({ type: TagOfGetRanking, isArray: true })
   tags!: TagOfGetRanking[];
   @ApiProperty({ type: RecordOfGetRanking, isArray: true })
