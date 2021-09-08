@@ -1,19 +1,20 @@
 import React from "react";
 import SubpageHead from "../../components/SubpageHead";
-import { RankingList } from "./rankingList";
+import RankingList from "./rankingList";
 import TagList from "./tagList";
 import "./ranking.scss"
 import axios from "axios";
+
 class ranking extends React.Component {
-  constructor() {
+  constructor(props) {
     super();
-    this.state = {  };
+    this.state = { root_id: props.match.params.id };
     this.getJson();
   }
 
   getJson = async () => {
     try {    
-      const url = 'http://20.63.164.137:3000/tasks/ranking/1';
+      const url = 'http://20.63.164.137:3000/tasks/ranking/'+this.state.root_id;
       await axios.get(url).then(res => {
         this.setState(res.data);
       });
@@ -22,14 +23,13 @@ class ranking extends React.Component {
       console.log("error!!");
     }
   };
-  
 
   render() {
   return (
     <div>
       <SubpageHead title={this.state.taskName} name="tasks" categoryTag="cooking" />
-      <TagList />
-      <RankingList />
+      <TagList tags={this.state.tags}/>
+      <RankingList records={this.state.records} />
     </div>
   );
 };
