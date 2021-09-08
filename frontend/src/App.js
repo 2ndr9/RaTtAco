@@ -47,10 +47,13 @@ class App extends React.Component {
         <ScrollToTop />
         <Header />
         <main>
+            <Switch>
+              <Route exact path="/register" component={Register}/>
+              <Route exact path="/login"  component={Login}/>
+            </Switch>
+
           <Switch>
             <Route exact path="/" component={top} />
-            <Route exact path="/register" component={Register}/>
-            <Route exact path="/login"  component={Login}/>
             <Auth>
               <Switch>
                 <Route exact path="/record" component={record} />
@@ -60,6 +63,9 @@ class App extends React.Component {
             <Route exact path="/tasks" component={tasks} />
             <Route path="/ranking/:id" component={ranking} />
           </Switch>
+
+          
+
         </main>
         <Footer />
       </BrowserRouter>

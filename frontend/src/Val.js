@@ -1,12 +1,11 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 
-function Auth(props){
+function Val(props){
     const token = localStorage.getItem("token");
     
-    if (token === null) {
-        return(
-        <Redirect to={'/login'} />);
+    if (token !== null) {
+        return(<Redirect to={'/'} />);
       }else{
         return(props.children)
     }
@@ -14,4 +13,4 @@ function Auth(props){
 }
 
 
-export default Auth;
+export default Val;

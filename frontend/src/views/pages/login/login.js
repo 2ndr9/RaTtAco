@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import SubpageHead from "../../components/SubpageHead";
-import { Link } from "react-router-dom";
+import { Link,Redirect } from "react-router-dom";
 
 import "../../components/forms.scss";
 import "../register/register.scss";
@@ -12,17 +12,18 @@ class login extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     const token = localStorage.getItem("token");
-    let isLogedIn = true;
-
-    if (token === null) {
-      isLogedIn = false;
-    }
-
+   
     this.state = {
       userID: "",
       password: "",
+      isLogedIn: true,
       error: "",
     };
+    if (token === null) {
+      this.setState({
+        isLogedIn:false
+      })
+    }
   }
 
   handleInputChange(event) {
@@ -55,6 +56,9 @@ class login extends React.Component {
   }
 
   render() {
+    if (this.state.isLogedIn){
+      return (<Redirect to={'/'} />);
+    }else{
     return (
       <div id="login">
         <SubpageHead title="ログイン" name="login" />
@@ -90,6 +94,7 @@ class login extends React.Component {
         </form>
       </div>
     );
+    }
   }
 }
 

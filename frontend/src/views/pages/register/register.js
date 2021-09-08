@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link,Redirect } from "react-router-dom";
 
 import SubpageHead from "../../components/SubpageHead";
 
@@ -11,19 +11,22 @@ class register extends React.Component {
   constructor() {
     super();
     const token = localStorage.getItem("token");
-    let isLogedIn = true;
-    if (token === null) {
-      isLogedIn = false;
-    }
+    
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       name: "",
       bio: "",
       userID: "",
+      isLogedIn: true,
       password: "",
       error: "",
     };
+    if (token === null) {
+      this.setState({
+        isLogedIn:false
+      })
+    }
   }
 
   handleInputChange(event) {
@@ -64,6 +67,9 @@ class register extends React.Component {
       });
   }
   render() {
+    if (this.state.isLogedIn){
+      return (<Redirect to={'/'} />);
+    }
     return (
       <div id="register">
         <SubpageHead title="新規登録" name="register" />
