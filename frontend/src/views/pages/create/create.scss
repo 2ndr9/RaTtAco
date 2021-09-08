@@ -1,0 +1,36 @@
+@import "../../../color.scss";
+
+.button-register {
+  margin-top: 1rem;
+  grid-column: 1 / -1;
+}
+#register {
+  p {
+    margin-top: 2rem;
+    + form {
+      margin-top: 1rem;
+    }
+  }
+
+  .required {
+    font-weight: 500;
+  }
+
+  input:invalid {
+    border: 1px solid $red;
+  }
+}
+
+.redMust {
+  background-color: red;
+  color: white;
+  padding: 1px 5px;
+}
+
+.eventForm {
+  flex-direction: column;
+}
+
+#createButton {
+  float: right;
+}
