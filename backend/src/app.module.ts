@@ -6,11 +6,14 @@ import { UsersModule } from './users/users.module';
 import { TasksController } from './tasks/tasks.controller';
 import { TasksModule } from './tasks/tasks.module';
 import { Task } from './tasks/tasks.entity';
-import { AuthService } from './auth/auth.service';
 import { AuthController } from './auth/auth.controller';
 import { AuthModule } from './auth/auth.module';
 import { TagsController } from './tags/tags.controller';
 import { TagsModule } from './tags/tags.module';
+import { UserTask } from './record/userTask.entity';
+import { RecordModule } from './record/record.module';
+import { Tag } from './tags/tags.entity';
+import { TagTask } from './tags/tagTask.entity';
 
 @Module({
   imports: [
@@ -21,14 +24,20 @@ import { TagsModule } from './tags/tags.module';
       username: 'rattaco-local',
       password: 'rattaco-pass',
       database: 'rattaco',
-      entities: [User, Task],
+      entities: [User, Task, UserTask, Tag, TagTask],
       synchronize: true,
     }),
     UsersModule,
     TasksModule,
     AuthModule,
     TagsModule,
+    RecordModule,
   ],
-  controllers: [UsersController, TasksController, AuthController, TagsController],
+  controllers: [
+    UsersController,
+    TasksController,
+    AuthController,
+    TagsController,
+  ],
 })
 export class AppModule {}

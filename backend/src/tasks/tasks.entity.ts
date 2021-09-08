@@ -1,4 +1,5 @@
-// import { UserTask } from 'src/intermediateTables/userTask.entity';
+import { UserTask } from 'src/record/userTask.entity';
+import { TagTask } from 'src/tags/tagTask.entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity('tasks')
@@ -17,14 +18,15 @@ export class Task {
 
   // creator
 
-  // @OneToMany(() => UserTask, (userTask) => userTask.task)
-  // userTask: UserTask[];
+  @OneToMany(() => UserTask, (userTask) => userTask.task)
+  userTask!: UserTask[];
+
+  @OneToMany(() => TagTask, (tagTask) => tagTask.task)
+  tagTask!: TagTask[];
 
   constructor(name: string, description: string, isPrivate: boolean) {
     this.name = name;
     this.description = description;
     this.isPrivate = isPrivate;
-    // taskを作る時点では、rtaは開始されていなくて、中間テーブルも作らない
-    // this.userTask = [];
   }
 }

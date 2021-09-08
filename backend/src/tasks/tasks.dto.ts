@@ -5,15 +5,18 @@ export class createTaskDTO {
   @ApiProperty()
   @IsNotEmpty()
   name!: string;
-
   @ApiProperty()
   description!: string;
-
   @ApiProperty()
   isPrivate!: boolean;
 }
 
-export class TagOfGetRanking {}
+export class TagOfGetRanking {
+  @ApiProperty()
+  name!: string;
+  @ApiProperty()
+  id!: number;
+}
 
 export class RecordOfGetRanking {
   @ApiProperty()
@@ -22,15 +25,17 @@ export class RecordOfGetRanking {
   rank!: number;
   @ApiProperty()
   startTime!: Date;
-  @ApiProperty()
+  @ApiProperty({ description: '経過ミリ秒' })
   durationTime!: number;
 }
 
-export class getRanking {
+export class GetRanking {
   @ApiProperty()
-  regulationName!: string;
+  taskName!: string;
   @ApiProperty()
-  tags!: TagOfGetRanking;
-  @ApiProperty()
-  records!: RecordOfGetRanking;
+  taskID!: number;
+  @ApiProperty({ type: TagOfGetRanking, isArray: true })
+  tags!: TagOfGetRanking[];
+  @ApiProperty({ type: RecordOfGetRanking, isArray: true })
+  records!: RecordOfGetRanking[];
 }
