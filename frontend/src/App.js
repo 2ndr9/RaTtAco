@@ -12,6 +12,7 @@ import result from "./views/pages/result/result";
 import ranking from "./views/pages/ranking/ranking.jsx";
 import Header from "./views/components/Header";
 import Footer from "./views/components/Footer";
+import create from "./views/pages/create/create";
 import "./App.scss";
 
 class App extends React.Component {
@@ -42,6 +43,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/" component={top} />
             <Route exact path="/register" component={register} />
+            <Route exact path="/create" component={create} />
             <Route exact path="/login" component={login} />
             <Route exact path="/record" component={record} />
             <Route exact path="/tasks" component={tasks} />
