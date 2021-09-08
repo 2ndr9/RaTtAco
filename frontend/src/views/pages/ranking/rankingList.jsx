@@ -1,17 +1,37 @@
 import React from "react";
 import { RankingCard } from "./rankingCard";
+class RankingList extends React.Component {
 
-export const RankingList = () => {
-  return (
-    <section id="ranking">
-        <RankingCard time="1:00" name="KANG" />
-        <RankingCard time="1:30" name="hoge" />
-        <RankingCard time="2:00" name="fuga" />
-        <RankingCard time="2:30" name="piyo" />
-        <RankingCard time="3:00" name="foo" />
-        <RankingCard time="3:30" name="bar" />
-        <RankingCard time="4:00" name="buzz" />
-        <RankingCard time="4:30" name="ほげ" />
+  timeAssets(number) {
+    const hour =  ("0" + Math.floor((number / 3600000) % 60)).slice(-2);
+    const minite  =  ("0" + Math.floor((number / 60000) % 60)).slice(-2);
+    const sec = ("0" + Math.floor((number / 1000) % 60)).slice(-2);
+    const milisec = ("0" + ((number / 10) % 100)).slice(-2);
+    const time = hour + ":" + minite + ":" + sec + "." + milisec
+    return time
+  }
+
+  dateAssets(date) {
+    const daTe = new Date(date);
+    const Year = daTe.getFullYear();
+    const Month = daTe.getMonth() + 1;
+    const day = daTe.getDate();
+    const when =Year +"/" + Month + "/" + day
+    return when
+  }
+
+  render() {
+    const records = this.props.records
+    console.log(records)
+    const list = []
+    for(const i in records){
+      list.push(<RankingCard time={this.timeAssets(records[i].durationTime)} name={records[i].userName} date={this.dateAssets(records[i].startTime)}/>);
+    }
+    return (
+      <section id="ranking">
+       {list}
     </section>
   );
 };
+}
+export default RankingList;

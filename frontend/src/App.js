@@ -5,8 +5,10 @@ import ScrollToTop from "./views/components/ScrollToTop";
 
 import top from "./views/pages/top/top";
 import register from "./views/pages/register/register";
+import login from "./views/pages/login/login";
 import record from "./views/pages/record/record";
 import tasks from "./views/pages/tasks/tasks";
+import result from "./views/pages/result/result";
 import ranking from "./views/pages/ranking/ranking.jsx";
 import Header from "./views/components/Header";
 import Footer from "./views/components/Footer";
@@ -40,9 +42,11 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/" component={top} />
             <Route exact path="/register" component={register} />
+            <Route exact path="/login" component={login} />
             <Route exact path="/record" component={record} />
             <Route exact path="/tasks" component={tasks} />
-            <Route exact path="/ranking" component={ranking} />
+            <Route exact path="/result/:word" component={result} />
+            <Route path="/ranking/:id" component={ranking} />
           </Switch>
         </main>
         <Footer />
