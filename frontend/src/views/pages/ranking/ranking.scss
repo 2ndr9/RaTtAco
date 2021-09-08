@@ -10,19 +10,21 @@
     margin-top: 1.5rem;
 }
 .CardContainer {
+    position: relative;
     box-sizing: border-box;
     background-color: $white;
     margin-bottom: 1rem;
     // border: 1px solid #000;
     border-radius: .3rem;
     filter: drop-shadow(0 2px 2px rgba($grey, .5));
-    padding: 1rem;
+    padding: 1.2rem 1rem;
     font-family: din-2014, ryo-gothic-plusn, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     font-weight: 700;
     font-size: 1.5rem;
     line-height: 1;
     font-style: italic;
     display: grid;
+    align-items: center;
     grid-template-columns: max-content 1fr max-content;
     &:hover {
         filter: drop-shadow(0 3px 4px rgba($grey, .3));
@@ -35,6 +37,18 @@
     }
     &:nth-child(3) {
         background-color: mix($red, $yellow);
+    }
+    .date {
+        font-size: .9rem;
+        // position: absolute;
+        opacity: .2;
+        top: .3rem;
+        right: .5rem;
+    }
+    .record_data {
+        border-left: 1px solid rgba($grey, .4);
+        padding-left: 1rem;
+        text-align: right;
     }
 }
 .CardContainer::before {

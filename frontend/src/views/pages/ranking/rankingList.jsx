@@ -7,7 +7,7 @@ class RankingList extends React.Component {
     const minite  =  ("0" + Math.floor((number / 60000) % 60)).slice(-2);
     const sec = ("0" + Math.floor((number / 1000) % 60)).slice(-2);
     const milisec = ("0" + ((number / 10) % 100)).slice(-2);
-    const time = hour + ":" + minite　+ ":" +　sec + ":" + milisec
+    const time = hour + ":" + minite + ":" + sec + "." + milisec
     return time
   }
 
