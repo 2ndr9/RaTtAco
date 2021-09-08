@@ -9,6 +9,24 @@ import "./create.scss";
 
 class create extends React.Component {
   render() {
+    const customStyles = {
+      menu: () => ({}),
+      menuList: (provided) => ({
+        ...provided,
+        backgroundColor: "#fff",
+        border: "1px solid hsl(0, 0%, 80%)",
+        borderRadius: "5px 5px 0 0",
+        maxHeight: "10rem",
+        bottom: "52px",
+        position: "absolute",
+        width: "100%",
+      }),
+      option: (provided) => ({
+        ...provided,
+        backgroundColor: "#fff",
+      }),
+    };
+
     return (
       <div id="create">
         <SubpageHead title="種目登録" name="create" />
@@ -28,7 +46,7 @@ class create extends React.Component {
           <label for="category_tag" className="required">
             種目タグ
           </label>
-          <Select options={options} placeholder="" />
+          <Select options={options} placeholder="" styles={customStyles} />
           <TagSelect />
           <button
             type="submit"
