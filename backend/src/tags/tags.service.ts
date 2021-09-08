@@ -2,6 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TasksService } from 'src/tasks/tasks.service';
 import { Repository } from 'typeorm';
+import { GetAllTag } from './tags.dto';
 import { Tag } from './tags.entity';
 import { TagTask } from './tagTask.entity';
 
@@ -42,5 +43,9 @@ export class TagsService {
       const tagTask = new TagTask(tag.id, taskID);
       await this.tagTaskRepository.save(tagTask);
     }
+  }
+
+  async getAllTags(): Promise<GetAllTag[]> {
+    return await this.tagsRepository.find();
   }
 }

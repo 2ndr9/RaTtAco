@@ -1,6 +1,7 @@
-import { Body, Controller, Put } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
-import { CreateTagDTO } from './tags.dto';
+import { Body, Controller, Get, HttpStatus, Put } from '@nestjs/common';
+import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { CreateTagDTO, GetAllTag } from './tags.dto';
+import { Tag } from './tags.entity';
 import { TagsService } from './tags.service';
 
 @ApiTags('tags')
@@ -16,5 +17,11 @@ export class TagsController {
       createTagDTO.tagName,
       createTagDTO.taskID,
     );
+  }
+
+  @Get()
+  @ApiResponse({ type: GetAllTag, isArray: true, status: HttpStatus.OK })
+  async getAllTags(): Promise<GetAllTag[]> {
+    return await this.tagsService.getAllTags();
   }
 }

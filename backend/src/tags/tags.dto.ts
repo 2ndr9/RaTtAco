@@ -9,3 +9,12 @@ export class CreateTagDTO {
   @IsNotEmpty()
   taskID!: number;
 }
+
+export class GetAllTag {
+  @ApiProperty()
+  @IsNotEmpty()
+  id!: number;
+  @ApiProperty()
+  @IsNotEmpty()
+  name!: string;
+}
