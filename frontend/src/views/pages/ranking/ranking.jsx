@@ -5,10 +5,19 @@ import TagList from "./tagList";
 import "./ranking.scss"
 
 class ranking extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      regulationName: "",
+      tags: [],
+      records: []
+    };
+  }
+
   render() {
   return (
     <div>
-      <SubpageHead title="Make Yakisoba" name="tasks" categoryTag="cooking" />
+      <SubpageHead title={this.state.regulationName} name="tasks" categoryTag="cooking" />
       <TagList />
       <RankingList />
     </div>
