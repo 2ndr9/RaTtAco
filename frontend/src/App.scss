@@ -49,6 +49,10 @@ form {
   textarea {
     @extend %textbox;
   }
+  select {
+    @extend %textbox;
+    background-color: $white;
+  }
 }
 
 @mixin button($bgcolor: $red, $textcolor: $white, $width: 100%) {
@@ -58,7 +62,7 @@ form {
   box-sizing: border-box;
   background-color: $bgcolor;
   color: $textcolor;
-  width: $width;
+  max-width: $width;
   height: 2.5rem;
   border: none;
   border-bottom: 3px solid darken($bgcolor, 10);
@@ -75,6 +79,9 @@ form {
   }
   &-red {
     @include button($bgcolor: $red)
+  }
+  &-grey {
+    @include button($bgcolor: $grey)
   }
 }
 .icon-crown::before {
