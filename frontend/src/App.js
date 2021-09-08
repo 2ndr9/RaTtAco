@@ -12,6 +12,8 @@ import result from "./views/pages/result/result";
 import ranking from "./views/pages/ranking/ranking.jsx";
 import Header from "./views/components/Header";
 import Footer from "./views/components/Footer";
+import NotFound from "./views/components/404";
+
 import "./App.scss";
 
 class App extends React.Component {
@@ -47,6 +49,7 @@ class App extends React.Component {
             <Route exact path="/tasks" component={tasks} />
             <Route exact path="/result/:word" component={result} />
             <Route path="/ranking/:id" component={ranking} />
+            <Route component={NotFound} />
           </Switch>
         </main>
         <Footer />

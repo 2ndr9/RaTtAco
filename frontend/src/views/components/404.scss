@@ -1,0 +1,20 @@
+#not_found {
+    img {
+        display: block;
+        margin: 0 auto;
+        max-width: 240px;
+        animation: rotako 3s ease-in-out alternate infinite;
+    }
+    @keyframes rotako {
+        0% {
+            transform: rotate(-10deg);
+        }
+        100% {
+            transform: rotate(5deg);
+        }
+    }
+    p {
+        margin-top: 1rem;
+        text-align: center;
+    }
+}
