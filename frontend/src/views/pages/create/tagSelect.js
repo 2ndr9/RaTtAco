@@ -36,12 +36,29 @@ export default class TagSelect extends Component {
         label: tags[i].name,
       });
     }
-    console.log(options);
+    const customStyles = {
+      menu: () => ({}),
+      menuList: (provided) => ({
+        ...provided,
+        backgroundColor: "#fff",
+        maxHeight: "10rem",
+        border: "1px solid hsl(0, 0%, 80%)",
+        borderRadius: "5px 5px 0 0",
+        bottom: "52px",
+        position: "absolute",
+        width: "100%",
+      }),
+      option: (provided) => ({
+        ...provided,
+        backgroundColor: "#fff",
+      }),
+    };
     return (
       <CreatableSelect
         isMulti
         onChange={this.handleChange}
         className="tagSelect"
+        styles={customStyles}
         options={options}
         placeholder="その他のタグを入力または選択"
       />
