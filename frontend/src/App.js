@@ -1,23 +1,28 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch} from "react-router-dom";
 import { Helmet } from "react-helmet";
 import ScrollToTop from "./views/components/ScrollToTop";
 
 import top from "./views/pages/top/top";
-import register from "./views/pages/register/register";
-import login from "./views/pages/login/login";
+import Register from "./views/pages/register/register";
+import Login from "./views/pages/login/login";
 import record from "./views/pages/record/record";
 import tasks from "./views/pages/tasks/tasks";
 import result from "./views/pages/result/result";
 import ranking from "./views/pages/ranking/ranking.jsx";
 import Header from "./views/components/Header";
 import Footer from "./views/components/Footer";
-import create from "./views/pages/create/create";
-import NotFound from "./views/components/404";
-
+import  Auth  from './Auth';
 import "./App.scss";
 
 class App extends React.Component {
+  constructor(){
+    super();
+    this.state = {
+      isLogedIn:false
+    }
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -44,14 +49,16 @@ class App extends React.Component {
         <main>
           <Switch>
             <Route exact path="/" component={top} />
-            <Route exact path="/register" component={register} />
-            <Route exact path="/create" component={create} />
-            <Route exact path="/login" component={login} />
-            <Route exact path="/record" component={record} />
+            <Route exact path="/register" component={Register}/>
+            <Route exact path="/login"  component={Login}/>
+            <Auth>
+              <Switch>
+                <Route exact path="/record" component={record} />
+                <Route path="/tag/:id" component={result} />
+              </Switch>
+            </Auth>
             <Route exact path="/tasks" component={tasks} />
-            <Route exact path="/result/:word" component={result} />
             <Route path="/ranking/:id" component={ranking} />
-            <Route component={NotFound} />
           </Switch>
         </main>
         <Footer />
@@ -61,3 +68,4 @@ class App extends React.Component {
 }
 
 export default App;
+
