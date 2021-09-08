@@ -42,7 +42,7 @@ class App extends React.Component {
             <Route exact path="/register" component={register} />
             <Route exact path="/record" component={record} />
             <Route exact path="/tasks" component={tasks} />
-            <Route exact path="/ranking" component={ranking} />
+            <Route path="/ranking/:id" component={ranking} />
           </Switch>
         </main>
         <Footer />
