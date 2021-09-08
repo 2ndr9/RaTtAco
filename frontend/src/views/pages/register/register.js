@@ -54,10 +54,10 @@ class register extends React.Component {
       .post("http://20.63.164.137:3000/auth/register", user, {
         headers: headers,
       })
-      .then((response) => {
-        localStorage.setItem("token", response.data.access_token);
+      .then((res) => {
+        localStorage.setItem("token", res.data.access_token);
         console.log("hoge");
-        console.log(response);
+        console.log(res);
         this.setState({
           isLogedIn: true,
         });

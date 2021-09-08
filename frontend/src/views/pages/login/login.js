@@ -43,9 +43,15 @@ class login extends React.Component {
       password: this.state.password,
     };
 
+    const headers = {
+      "Content-Type": "application/json",
+    };
     axios
-      .post("http://20.63.164.137:3000/auth/login", { user })
+      .post("http://20.63.164.137:3000/auth/login",  user ,  {
+        headers: headers,
+      })
       .then((res) => {
+        localStorage.setItem("token", res.data.access_token);
         console.log(res);
         console.log(res.data);
       })
