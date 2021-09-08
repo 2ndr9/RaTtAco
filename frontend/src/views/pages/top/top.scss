@@ -1,5 +1,35 @@
 @import "../../../color.scss";
 
+#top {
+    .wrapper_swim_rattaco {
+        position: relative;
+        height: 6rem;
+    }
+    img.swim_rattaco {
+        position: absolute;
+        display: block;
+        right: -3rem;
+        top: 0;
+        width: 3rem;
+        animation: rattaco_vertical 1.5s infinite alternate ease-in-out, rattaco_horizontal 6s infinite linear;
+    }
+
+    @keyframes rattaco_horizontal {
+        100% {
+            right: 100vw;
+        }
+    }
+
+    @keyframes rattaco_vertical {
+        50% {
+            top: 1.5rem;
+        }
+        100% {
+            top: .5rem;
+        }
+    }
+}
+
 #eyecatch {
     display: flex;
     flex-direction: column;
