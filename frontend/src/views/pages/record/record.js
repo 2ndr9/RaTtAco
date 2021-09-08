@@ -120,7 +120,7 @@ class record extends React.Component {
           <Link
             to={"/ranking/" + this.state.task}
             onClick={(event) => event.preventDefault()}
-            className="button-wide-grey mt1"
+            className="button-wide-grey mt2"
           >
             登録
           </Link>
@@ -128,7 +128,7 @@ class record extends React.Component {
           <Link
             to={"/ranking/" + this.state.task}
             onClick={this.endPass}
-            className="button-wide-blue mt1"
+            className="button-wide-blue mt2"
           >
             登録
           </Link>

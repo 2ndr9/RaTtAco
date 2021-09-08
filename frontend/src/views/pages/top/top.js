@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Autosuggest from "react-autosuggest";
+import swim_rattaco from "../../../img/icon/icon.svg";
+
 import "./top.scss";
 
 const languages = [
@@ -91,7 +93,7 @@ class top extends React.Component {
     };
 
     return (
-      <div>
+      <div id="top">
         <section id="eyecatch" className="full-width">
           <p>
             生活のアクセルを踏み込む、
@@ -101,18 +103,42 @@ class top extends React.Component {
         </section>
         <section>
           <p>
-            料理するのがめんどくさいんんじゃあああああああああああああああああああというそこのあなたに！今から15分で作り切りませんか？家事をなんでもタイムアタックにRaTtAco！
+            料理、掃除、洗濯、運動......
+            <br />
+            現代人は毎日大量のタスクに追われる生活を
+            <br class="pc-none" />
+            送っています。
           </p>
           <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime,
-            delectus ex quaerat numquam fugiat saepe doloremque rem molestiae
-            architecto quisquam, exercitationem ducimus officia aperiam illo,
-            quam debitis eos dicta expedita.
+            少しでも早く、誰よりも早く、
+            <br class="pc-none" />
+            このタスクを終わらせたい！
+            <br />
+            そんなときには<strong>RaTtAco</strong>(ラタッコ)。
           </p>
+          <p>
+            ゲームのRTA(リアル・タイム・アタック)から
+            <br class="pc-none" />
+            着想を得たサービスが、
+            <br class="pc-none" />
+            あなたのスピード生活をサポートします。
+          </p>
+
+          <div className="wrapper_swim_rattaco">
+            <img src={swim_rattaco} alt="icon" className="swim_rattaco" />
+          </div>
+
+          <Link to="/tasks" id="totasks" className="button-wide-blue icon-run">
+            種目一覧
+          </Link>
+
+          <h1>種目検索</h1>
+
           <form method="POST" action="/">
             <p>
               {/* <input type="text" />
               <button type="submit" id="search-button">
+
                 <i class="fas fa-search"></i>
               </button> */}
 
@@ -125,20 +151,12 @@ class top extends React.Component {
                 renderInputComponent={renderInputComponent}
                 inputProps={inputProps}
               />
+
+              {/*     <i className="fas fa-search"></i>
+               </button> */}
+
             </p>
           </form>
-
-          {/* <Link
-            to="/ranking"
-            id="toranking"
-            className="button-wide-blue icon-crown"
-          >
-            ランキング
-          </Link> */}
-
-          <Link to="/tasks" id="totasks" className="button-wide-blue icon-run">
-            種目一覧
-          </Link>
 
           <Link to="/record" id="toform">
             Let's
