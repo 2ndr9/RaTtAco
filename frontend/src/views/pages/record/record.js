@@ -9,7 +9,9 @@ class record extends React.Component {
         this.state = {
             task: "1",
             start: "--/--/--/ --:--:--.--",
-            end: "--/--/--/ --:--:--.--"
+            end: "--/--/--/ --:--:--.--",
+            startback: null,
+            endback: null,
         };
         this.timerEvent = React.createRef();
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -28,6 +30,10 @@ class record extends React.Component {
    
      getTime(event){
         const now = new Date();
+        const nameBack=event.target.name+"back";
+        this.setState({
+          [nameBack]: now
+        });
         const Year = now.getFullYear();
         const Month = now.getMonth()+1;
         const daTe = now.getDate();
@@ -47,15 +53,15 @@ class record extends React.Component {
     resetTime(){
       this.setState({
         start: "--/--/--/ --:--:--.--",
-        end: "--/--/--/ --:--:--.--"
+        end: "--/--/--/ --:--:--.--",
+        startback: null,
+        endback: null,
       });
     }
-
  
-  handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
-    event.preventDefault();
-  }
+    endPass(){
+      console.log("aaa")
+    }
 
   render() {
     return (
@@ -78,9 +84,13 @@ class record extends React.Component {
               <input type="text" value={this.state.end} disabled/>
             </p>
         </form>
-
-        <Link to={'/ranking/' + this.state.task}>登録</Link>
-
+        
+        {
+        !this.state.endback || this.state.startback > this.state.endback ?
+          <Link to={'/ranking/' + this.state.task} onClick={ (event) => event.preventDefault()}>登録</Link>
+        : 
+          <Link to={'/ranking/' + this.state.task} onClick={this.endPass} >登録</Link>
+        }
         <StopWatch getTime={this.getTime} resetTime={this.resetTime}/>
 
       </div>
