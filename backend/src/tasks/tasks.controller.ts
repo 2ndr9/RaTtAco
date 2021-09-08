@@ -32,4 +32,19 @@ export class TasksController {
   async getTasks(): Promise<Task[]> {
     return await this.tasksService.getTasks();
   }
+
+  @Get('hoge')
+  hoge() {
+    let a = new Date();
+
+    const c = setTimeout(() => {
+      const b = new Date();
+      console.log(a.getTime() - b.getTime());
+    }, 5000);
+  }
+
+  // @Get('ranking')
+  // async getRanking():Promise<>{
+
+  // }
 }

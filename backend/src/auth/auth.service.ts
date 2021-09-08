@@ -21,7 +21,7 @@ export class AuthService {
   ) {}
 
   async login(loginDTO: LoginDTO): Promise<{ access_token: string }> {
-    const user = await this.usersService.findOne(loginDTO.email);
+    const user = await this.usersService.findOne(loginDTO.userID);
 
     if (!user) {
       throw new BadRequestException('invalid email');
@@ -29,7 +29,7 @@ export class AuthService {
       throw new UnauthorizedException('invalid password');
     } else {
       // jwtをdecodeしたときにpayloadの情報が得られる。userIDさえ得られればいいため、userIDのみとする
-      const payload = { userID: user.id };
+      const payload = { userID: user.userID };
       return {
         access_token: this.jwtService.sign(payload),
       };
@@ -41,12 +41,12 @@ export class AuthService {
     const user = new User(
       registerDTO.name,
       registerDTO.bio,
-      registerDTO.email,
+      registerDTO.userID,
       hashedPass,
     );
     try {
       const savedUser = await this.usersRepository.save(user);
-      const payload = { userID: savedUser.id };
+      const payload = { userID: savedUser.userID };
       return {
         access_token: this.jwtService.sign(payload),
       };

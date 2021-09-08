@@ -21,12 +21,12 @@ export class UsersService {
     });
   }
 
-  async getMe(userID: User['id']): Promise<GetUserDTO> {
+  async getMe(userID: User['userID']): Promise<GetUserDTO> {
     const user = await this.usersRepository.findOne({
       where: {
-        id: userID,
+        userID: userID,
       },
-      select: ['id', 'email', 'bio', 'name'],
+      select: ['userID', 'bio', 'name'],
     });
     if (!user) {
       throw new BadRequestException('no user found');

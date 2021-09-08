@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { IsAlphanumeric } from 'class-validator';
 
 export class GetUserDTO {
   @ApiProperty()
@@ -6,7 +7,5 @@ export class GetUserDTO {
   @ApiProperty()
   bio!: string;
   @ApiProperty()
-  email!: string;
-  @ApiProperty()
-  id!: number;
+  userID!: string;
 }

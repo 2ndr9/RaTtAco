@@ -1,10 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsEmail, IsNotEmpty } from 'class-validator';
+import { IsAlphanumeric, IsNotEmpty } from 'class-validator';
 
 export class LoginDTO {
   @ApiProperty()
-  @IsEmail()
-  email!: string;
+  @IsAlphanumeric()
+  userID!: string;
 
   @ApiProperty()
   @IsNotEmpty()
@@ -20,8 +20,8 @@ export class RegisterDTO {
   bio!: string;
 
   @ApiProperty()
-  @IsEmail()
-  email!: string;
+  @IsAlphanumeric()
+  userID!: string;
 
   @ApiProperty()
   @IsNotEmpty()
