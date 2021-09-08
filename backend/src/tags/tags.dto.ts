@@ -5,9 +5,6 @@ export class CreateTagDTO {
   @ApiProperty()
   @IsNotEmpty()
   tagName!: string;
-  @ApiProperty()
-  @IsNotEmpty()
-  taskID!: number;
 }
 
 export class GetAllTag {

@@ -1,5 +1,5 @@
-import { Body, Controller, Get, HttpStatus, Put } from '@nestjs/common';
-import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Body, Controller, Get, HttpStatus, Param, Put } from '@nestjs/common';
+import { ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateTagDTO, GetAllTag } from './tags.dto';
 import { Tag } from './tags.entity';
 import { TagsService } from './tags.service';
@@ -9,13 +9,15 @@ import { TagsService } from './tags.service';
 export class TagsController {
   constructor(private readonly tagsService: TagsService) {}
 
-  @Put()
+  @Put(':taskID')
+  @ApiParam({ name: 'taskID' })
   async postTagAndAttachToTask(
+    @Param('taskID') taskID: number,
     @Body() createTagDTO: CreateTagDTO,
   ): Promise<void> {
     await this.tagsService.createTagAsNeededAndAttachToTask(
       createTagDTO.tagName,
-      createTagDTO.taskID,
+      taskID,
     );
   }
 
