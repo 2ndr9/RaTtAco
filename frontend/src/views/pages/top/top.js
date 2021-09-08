@@ -26,7 +26,7 @@ class top extends React.Component {
           <form method="POST" action="/">
             <p>
               <input type="text" />
-              <button type="submit">
+              <button type="submit" id="search-button">
                 <i class="fas fa-search"></i>
               </button>
             </p>
