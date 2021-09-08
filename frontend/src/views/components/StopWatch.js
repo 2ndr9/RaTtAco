@@ -2,7 +2,7 @@ import React, { useState }  from 'react';
 import Timer from "./Timer";
 import TimerButtons from "./TimerButton";
 
-function StopWatch() {
+function StopWatch(props) {
     const [isActive, setIsActive] = useState(false);
     const [isPaused, setIsPaused] = useState(true);
     const [time, setTime] = useState(0);
@@ -22,15 +22,17 @@ function StopWatch() {
       };
     }, [isActive, isPaused]);
     
-    
-    const handlePauseResume = () => {
+
+    const handlePauseResume = (e) => {
       setIsActive(true);
       setIsPaused(!isPaused);
+      props.getTime(e);
     };
     
     const handleReset = () => {
       setIsActive(false);
       setIsPaused(true);
+      props.resetTime();
       setTime(0);
     };
     

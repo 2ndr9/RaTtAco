@@ -1,22 +1,32 @@
 import React from "react";
   
 export default function ControlButtons(props) {
-  const Buttons = (
+  const StartButton = (
     <span>
-        <button onClick={props.handlePauseResume}>
-            {props.isPaused ? "Start" : "Stop"}
-        </button>
-        <button onClick={props.handleReset}>
-            Reset
+        <button name="start" onClick={(e)=>{props.handlePauseResume(e)}}>
+            Start
         </button>
     </span>
   );
 
+  const StopButton = (
+    <span>
+        <button name="end" onClick={(e)=>{props.handlePauseResume(e)}}>
+            Stop
+        </button>
+    </span>
+  );
+
+  const ResetButton = (
+      <button onClick={props.handleReset}>
+        Reset
+      </button>
+  );
   
   
   return (
     <div className="Control-Buttons">
-      <div>{Buttons}</div>
+      <div>{props.isPaused ? StartButton : StopButton}{ResetButton}</div>
     </div>
   );
 }

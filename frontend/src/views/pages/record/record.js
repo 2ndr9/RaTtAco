@@ -1,4 +1,4 @@
-import React, { Component }  from "react";
+import React from "react";
 import StopWatch from '../../components/StopWatch';
 import { Link } from "react-router-dom";
 
@@ -8,11 +8,13 @@ class record extends React.Component {
         super(props);
         this.state = {
             task: "1",
-            start: "00:00:00",
-            end: "00:00:00"
+            start: "--/--/--/ --:--:--.--",
+            end: "--/--/--/ --:--:--.--"
         };
         this.timerEvent = React.createRef();
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.getTime = this.getTime.bind(this);
+        this.resetTime = this.resetTime.bind(this);
     }
 
     handleInputChange(event) {
@@ -23,7 +25,32 @@ class record extends React.Component {
             [name]: value
         });
     }
-  
+   
+     getTime(event){
+        const now = new Date();
+        const Year = now.getFullYear();
+        const Month = now.getMonth()+1;
+        const daTe = now.getDate();
+        const Hour = ("0"+now.getHours()).slice(-2);
+        const Min = ("0"+now.getMinutes()).slice(-2);
+        const Sec = ("0"+now.getSeconds()).slice(-2);
+        const MiliSec = Math.round(now.getMilliseconds()/10);
+        const Now = Year + "/" + Month + "/" + daTe + " " + Hour + ":" + Min + ":" + Sec + "." + MiliSec;
+        const name=event.target.name;
+        console.log(Now)
+        this.setState({
+              [name]: Now
+        });
+           
+    }
+
+    resetTime(){
+      this.setState({
+        start: "--/--/--/ --:--:--.--",
+        end: "--/--/--/ --:--:--.--"
+      });
+    }
+
  
   handleSubmit(event) {
     alert('A name was submitted: ' + this.state.value);
@@ -45,16 +72,16 @@ class record extends React.Component {
                 </select>
             </label>
             <p>
-              <input name="start" type="time" value={this.state.start} onChange={this.handleInputChange} step="1"/>
+              <input type="text" value={this.state.start} disabled/>
             </p>
             <p> 
-              <input name="end" type="time" value={this.state.end} onChange={this.handleInputChange} step="1"/>
+              <input type="text" value={this.state.end} disabled/>
             </p>
         </form>
 
         <Link to={'/ranking/' + this.state.task}>登録</Link>
 
-        <StopWatch />
+        <StopWatch getTime={this.getTime} resetTime={this.resetTime}/>
 
       </div>
     );
