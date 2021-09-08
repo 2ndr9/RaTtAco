@@ -35,35 +35,81 @@
 }
 
 #eyecatch {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-image: url("../../../img/theme/eyecatch.png");
-    background-size: cover;
-    height: 10rem;
-    text-align: right;
-    margin-bottom: 1rem;
-    p {
-        padding: 1rem;
-        filter: drop-shadow(1px 1px 3px $white);
-        background-color: rgba($white, .4);
-    }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-image: url("../../../img/theme/eyecatch.jpg");
+  background-size: cover;
+  height: 14rem;
+  text-align: right;
+  margin-bottom: 1rem;
+  p {
+    font-family: dnp-shuei-gothic-kin-std, sans-serif;
+    font-weight: 600;
+    padding: 1rem;
+    margin: 0;
+    filter: drop-shadow(1px 1px 1px $white);
+    background-color: rgba($white, 0.5);
+  }
 }
 
-button#search-button {
-    color: $grey;
-    content: "\f002";
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    font-size: 1.5rem;
-    position: absolute;
-    right: .3rem;
-    top: 1.3rem;
-    background-color: transparent;
-    border: none;
+#search-button {
+  color: $grey;
+  content: "\f002";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 1.5rem;
+  position: absolute;
+  right: 0.7rem;
+  top: 1.4rem;
+  background-color: transparent;
+  border: none;
 }
 
 #toranking {
-    text-decoration: none;
+  text-decoration: none;
 }
 
+.react-autosuggest__container {
+  position: relative;
+}
+
+.react-autosuggest__suggestions-container--open {
+  max-height: 30vh;
+  overflow-y: scroll;
+  display: block;
+  position: absolute;
+  bottom: 3.5rem;
+  left: 1rem;
+  width: calc( 100% - 2rem );
+  border: 1px solid $grey;
+  background-color: rgba($white, .95);
+  font-weight: 300;
+  font-size: 16px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  z-index: 99;
+}
+
+.react-autosuggest__suggestions-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.react-autosuggest__suggestion {
+  cursor: pointer;
+  padding: 10px 20px;
+}
+
+.react-autosuggest__suggestion--highlighted {
+  background-color: #ddd;
+}
+
+ul {
+  list-style: none;
+  li {
+      padding: .5rem;
+    //   background-color: yellow;
+  }
+}
