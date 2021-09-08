@@ -1,9 +1,8 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Task } from 'src/tasks/tasks.entity';
 import { TasksService } from 'src/tasks/tasks.service';
 import { Repository } from 'typeorm';
-import { PostEndTimeDTO } from './record.dto';
+import { PostRecordDTO } from './record.dto';
 import { UserTask } from './userTask.entity';
 
 @Injectable()
@@ -14,39 +13,21 @@ export class RecordService {
     private readonly tasksService: TasksService,
   ) {}
 
-  async createUserTaskAsNeededAndInsertStartTime(
-    startTime: Date,
+  async createRecord(
+    postRecordDTO: PostRecordDTO,
     userID: string,
-    taskID: number,
   ): Promise<void> {
-    const task = await this.tasksService.findOne(taskID);
+    const task = await this.tasksService.findOne(postRecordDTO.taskID);
     if (!task) throw new BadRequestException('そのtaskIDのtaskはないよ〜');
 
-    const userTask = await this.userTaskRepository.findOne({
-      where: { taskID: taskID, userID: userID },
-    });
-    if (!userTask) {
-      const newUserTask = new UserTask(userID, taskID, startTime);
-      await this.userTaskRepository.save(newUserTask);
-    } else {
-      await this.userTaskRepository.update(userTask.id, {
-        startTime: startTime,
-      });
-    }
-  }
-
-  async insertEndTime(
-    endTime: Date,
-    taskID: number,
-    userID: string,
-  ): Promise<void> {
-    const task = await this.userTaskRepository.findOne({
-      where: { taskID: taskID, userID: userID },
-    });
-    if (!task) throw new BadRequestException('そのidのtaskはないよ〜');
-
-    await this.userTaskRepository.update(taskID, {
-      endTime: endTime,
-    });
+    const userTask = new UserTask(
+      userID,
+      postRecordDTO.taskID,
+      postRecordDTO.startTime,
+      postRecordDTO.endTime,
+      new Date(postRecordDTO.endTime).getTime() -
+        new Date(postRecordDTO.startTime).getTime(),
+    );
+    await this.userTaskRepository.save(userTask);
   }
 }

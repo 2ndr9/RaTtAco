@@ -40,7 +40,6 @@ export class TasksService {
   }
 
   async getRanking(taskID: number): Promise<GetRankingDTO> {
-    // async getRanking(taskID: number): Promise<any> {
     const task = await this.tasksRepository.findOne({
       where: { id: taskID },
       relations: ['tagTask', 'userTask'],
@@ -70,13 +69,7 @@ export class TasksService {
     const userTasks = await this.userTaskRepository.find({
       where: { taskID: taskID },
       relations: ['user'],
-    });
-    userTasks.sort((a, b) => {
-      return (
-        a.endTime.getTime() -
-        a.startTime.getTime() -
-        (b.endTime.getTime() - b.startTime.getTime())
-      );
+      order: { duration: 'ASC' },
     });
 
     userTasks.forEach((userTask, index) => {
@@ -85,14 +78,11 @@ export class TasksService {
         startTime: userTask.startTime,
         endTime: userTask.endTime,
         rank: index + 1,
-        durationTime: userTask.endTime.getTime() - userTask.startTime.getTime(),
+        durationTime: userTask.duration,
       };
       res.records.push(record);
     });
 
-    console.log(res);
     return res;
-
-    // return await this.ta;
   }
 }
