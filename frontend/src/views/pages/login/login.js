@@ -1,25 +1,27 @@
 import React from "react";
-import axios from 'axios';
+import axios from "axios";
 import SubpageHead from "../../components/SubpageHead";
 import { Link } from "react-router-dom";
 
 import "../../components/forms.scss";
+import "../register/register.scss";
+
 class login extends React.Component {
-  constructor(){
+  constructor() {
     super();
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     const token = localStorage.getItem("token");
-    let isLogedIn = true
-    
+    let isLogedIn = true;
+
     if (token === null) {
-        isLogedIn = false
+      isLogedIn = false;
     }
 
     this.state = {
       userID: "",
       password: "",
-      error: ""
+      error: "",
     };
   }
 
@@ -32,22 +34,23 @@ class login extends React.Component {
     });
   }
 
-  handleSubmit (event) {
+  handleSubmit(event) {
     event.preventDefault();
-    console.log("hogehoge")
+    console.log("hogehoge");
     const user = {
       userID: this.state.userID,
       password: this.state.password,
     };
 
-    axios.post("http://20.63.164.137:3000/auth/login", { user })
-      .then(res => {
+    axios
+      .post("http://20.63.164.137:3000/auth/login", { user })
+      .then((res) => {
         console.log(res);
         console.log(res.data);
       })
-      .catch(error => {
-        console.log(error.response)
-        this.setState({ error: error.response.message})
+      .catch((error) => {
+        console.log(error.response);
+        this.setState({ error: error.response.message });
       });
   }
 
@@ -55,19 +58,35 @@ class login extends React.Component {
     return (
       <div id="login">
         <SubpageHead title="ログイン" name="login" />
-        <form onSubmit={this.handleSubmit}>
+        <form className="one-to-one_form" onSubmit={this.handleSubmit}>
           <label for="userID" class="required">
             ユーザーID
           </label>
-          <input type="text" name="userID" onChange={this.handleInputChange} required></input>
+          <input
+            type="text"
+            name="userID"
+            onChange={this.handleInputChange}
+            required
+          ></input>
           <label for="password" class="required">
             パスワード
           </label>
-          <input type="password" name="password" onChange={this.handleInputChange} required></input>
-          <button type="submit" value="Submit" class="button-wide-blue button-register">
+          <input
+            type="password"
+            name="password"
+            onChange={this.handleInputChange}
+            required
+          ></input>
+          <button
+            type="submit"
+            value="Submit"
+            class="button-wide-blue button-register"
+          >
             ログイン
           </button>
-          <Link to={"/register"}>新規登録</Link>
+          <Link to={"/register"} className="button-wide-red button-register">
+            新規登録
+          </Link>
         </form>
       </div>
     );
