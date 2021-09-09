@@ -55,6 +55,7 @@ export default class TagSelect extends Component {
     };
     return (
       <CreatableSelect
+        name="tag"
         isMulti
         onChange={this.handleChange}
         className="tagSelect"
