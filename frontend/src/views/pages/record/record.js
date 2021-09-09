@@ -89,8 +89,7 @@ class record extends React.Component {
     });
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
+  handleSubmit() {
     const user = {
       taskID: this.state.task,
       startTime: this.state.startback,
@@ -129,6 +128,9 @@ class record extends React.Component {
       })
       .catch((error) => {
         console.log("namu");
+        this.setState({
+          options: [],
+        });
         console.log(error);
       });
   }
