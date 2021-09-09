@@ -24,6 +24,7 @@ class result extends React.Component {
   };
 
   render() {
+    console.log(this.state);
     const resultList = this.state.tasks;
     console.log(resultList);
     return (
