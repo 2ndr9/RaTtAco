@@ -81,15 +81,14 @@ const renderInputComponent = (inputProps) => (
   </div>
 );
 
-  const token = localStorage.getItem("token")
-  const baseurl = 'http://20.63.164.137:3000/';
-  const authAxios = axios.create({
-    baseURL: baseurl,
-    headers:{ 
-      Authorization: `Bearer ${token}`
-    },
-  });
-
+const token = localStorage.getItem("token");
+const baseurl = "http://20.63.164.137:3000/";
+const authAxios = axios.create({
+  baseURL: baseurl,
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+});
 
 class top extends React.Component {
   constructor() {
@@ -98,7 +97,7 @@ class top extends React.Component {
       value: "",
       suggestions: [],
     };
-    this.getMe()
+    this.getMe();
   }
 
   onChange = (event, { newValue, method }) => {
@@ -114,13 +113,12 @@ class top extends React.Component {
   };
 
   getMe = async () => {
-    try {     
-      await authAxios.get('/users/me').then(res => {
+    try {
+      await authAxios.get("/users/me").then((res) => {
         this.setState(res.data);
-        console.log(this.state)
+        console.log(this.state);
       });
-    
-    } catch (error) {    
+    } catch (error) {
       console.log(error);
     }
   };
@@ -171,8 +169,12 @@ class top extends React.Component {
             <img src={swim_rattaco} alt="icon" className="swim_rattaco" />
           </div>
 
-          <Link to="/tasks" id="totasks" className="button-wide-blue icon-run">
-            種目一覧
+          <Link
+            to="/categories"
+            id="toCategories"
+            className="button-wide-blue icon-run"
+          >
+            カテゴリ一覧
           </Link>
 
           <h1>種目検索</h1>
