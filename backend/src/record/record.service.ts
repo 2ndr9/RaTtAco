@@ -25,8 +25,7 @@ export class RecordService {
       postRecordDTO.taskID,
       postRecordDTO.startTime,
       postRecordDTO.endTime,
-      new Date(postRecordDTO.endTime).getTime() -
-        new Date(postRecordDTO.startTime).getTime(),
+      postRecordDTO.endTime - postRecordDTO.startTime,
     );
     await this.userTaskRepository.save(userTask);
   }

@@ -7,8 +7,8 @@ export class PostRecordDTO {
   taskID!: number;
   @ApiProperty()
   @IsNotEmpty()
-  startTime!: Date;
+  startTime!: number;
   @ApiProperty()
   @IsNotEmpty()
-  endTime!: Date;
+  endTime!: number;
 }

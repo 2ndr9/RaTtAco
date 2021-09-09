@@ -75,10 +75,13 @@ export class TasksService {
     userTasks.forEach((userTask, index) => {
       const record = {
         userName: userTask.user.name,
-        startTime: userTask.startTime,
-        endTime: userTask.endTime,
+        // bigIntはstringで返ってきちゃうから、Numberに変換
+        startTime: Number(userTask.startTime),
+        // bigIntはstringで返ってきちゃうから、Numberに変換
+        endTime: Number(userTask.endTime),
         rank: index + 1,
-        durationTime: userTask.duration,
+        // bigIntはstringで返ってきちゃうから、Numberに変換
+        durationTime: Number(userTask.duration),
       };
       res.records.push(record);
     });

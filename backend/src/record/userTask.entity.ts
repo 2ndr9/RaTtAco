@@ -14,13 +14,17 @@ export class UserTask {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @Column()
-  startTime: Date;
+  @Column({ type: 'bigint' })
+  // 世界協定時からの経過ミリ秒
+  // DateをgetTime()したもの
+  startTime: number;
 
-  @Column()
-  endTime: Date;
+  @Column({ type: 'bigint' })
+  // 世界協定時からの経過ミリ秒
+  // DateをgetTime()したもの
+  endTime: number;
 
-  @Column()
+  @Column({ type: 'bigint' })
   duration: number;
 
   @Column()
@@ -42,8 +46,8 @@ export class UserTask {
   constructor(
     userID: string,
     taskID: number,
-    startTime: Date,
-    endTime: Date,
+    startTime: number,
+    endTime: number,
     duration: number,
   ) {
     this.userID = userID;

@@ -47,7 +47,8 @@ export class TasksController {
   @ApiResponse({
     type: GetRankingDTO,
     status: HttpStatus.OK,
-    description: 'ソートして返すよ〜',
+    description:
+      'recordsは、ソートして返すよ〜。startTimeは世界協定時からの経過ミリ秒。new Date(startTime)すればDate型に変換可能。durationTimeの単位はミリ秒。',
   })
   async getRanking(@Param('taskID') taskID: number): Promise<GetRankingDTO> {
     const res = await this.tasksService.getRanking(taskID);

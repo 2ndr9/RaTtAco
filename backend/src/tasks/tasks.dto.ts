@@ -23,8 +23,11 @@ export class RecordOfGetRanking {
   userName!: string;
   @ApiProperty()
   rank!: number;
-  @ApiProperty()
-  startTime!: Date;
+  @ApiProperty({
+    description:
+      '世界協定時からの経過ミリ秒。DateをgetTime()したもの。new Date(startTime)すれば、Date型に変換可能',
+  })
+  startTime!: number;
   @ApiProperty({ description: '経過ミリ秒' })
   durationTime!: number;
 }

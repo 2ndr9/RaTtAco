@@ -7,7 +7,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { PostRecordDTO } from './record.dto';
 import { RecordService } from './record.service';
 
@@ -19,6 +19,10 @@ export class RecordController {
   @Post()
   @ApiBearerAuth()
   @UseGuards(AuthGuard('jwt'))
+  @ApiOperation({
+    description:
+      'startTimeとendTimeは、世界協定時からの経過ミリ秒。DateをgetTime()したもの。',
+  })
   async postRecord(
     @Request() req: any,
     @Body() postRecordDTO: PostRecordDTO,
