@@ -58,7 +58,7 @@ class Login extends React.Component {
   }
 
   judgeLogin(){
-    if (this.token ===null) {
+    if (this.token !== null) {
       return (<Redirect to={'/'} />);
     }
   }

@@ -13,6 +13,7 @@ import ranking from "./views/pages/ranking/ranking.jsx";
 import Header from "./views/components/Header";
 import Footer from "./views/components/Footer";
 import  Auth  from './Auth';
+import  Val  from './Val';
 import "./App.scss";
 
 class App extends React.Component {
@@ -46,19 +47,13 @@ class App extends React.Component {
         </Helmet>
         <ScrollToTop />
         <Header />
-        <main>
-            <Switch>
-              <Route exact path="/register" component={Register}/>
-              <Route exact path="/login"  component={Login}/>
-            </Switch>
+        <main> 
           <Switch>
             <Route exact path="/" component={top} />
-            <Auth>
-              <Switch>
-                <Route exact path="/record" component={record} />
-                <Route path="/tag/:id" component={result} />
-              </Switch>
-            </Auth>
+            <Route exact path="/register" component={Register}/>
+            <Route exact path="/login"  component={Login}/>
+            <Route exact path="/record" component={record} />
+            <Route path="/tag/:id" component={result} />
             <Route exact path="/tasks" component={tasks} />
             <Route path="/ranking/:id" component={ranking} />
           </Switch>
