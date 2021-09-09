@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import axios from "axios";
 
 import CreatableSelect from "react-select/creatable";
+import Tag from "../ranking/tag";
 
 export default class TagSelect extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {};
     this.getJson();
+
   }
 
   getJson = async () => {
@@ -22,13 +24,20 @@ export default class TagSelect extends Component {
     }
   };
 
-  handleChange = (newValue, actionMeta) => {
-    {
-      newValue.map((e) => {
-        this.props.tagSelectHandleChange(e);
-      });
-    }
-  };
+  //   tags(event)  {
+  //     const tags = event.map((e) => {
+  //       return e.value;
+  //     })
+  //   return tags
+  // }; 
+    
+  // handleChange = (newValue, actionMeta) => {
+  //   {
+  //     newValue.map((e) => {
+  //       this.props.tagSelectHandleChange(e);
+  //     });
+  //   }
+  // };
 
   render() {
     const tags = this.state;
@@ -60,7 +69,7 @@ export default class TagSelect extends Component {
       <CreatableSelect
         name="tag"
         isMulti
-        onChange={this.handleChange}
+        onChange={(e) => {this.props.tagSelectHandleChange(e);}}
         className="tagSelect"
         styles={customStyles}
         options={options}

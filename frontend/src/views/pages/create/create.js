@@ -8,12 +8,14 @@ import axios from "axios";
 import "../../components/forms.scss";
 import "./create.scss";
 
+
 class create extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       name: "",
       description: "",
+      maintag: "",
       isPrivate: true,
       tag: [],
     };
@@ -29,28 +31,32 @@ class create extends React.Component {
     this.setState({
       [name]: value,
     });
-    console.log(value);
   }
 
   handleChange = (e) => {
-    this.setState({ tag: this.state.tag.concat(e.value) });
-    console.log(this.state.tag);
+    console.log(e.label);
+    const maintag = e.label
+    this.setState({ maintag: maintag });
+    console.log(maintag)
   };
 
-  tagSelectHandleChange = (e) => {
-    const tag = this.state.tag;
-    // tag.push(e.value);
-    this.setState({ tag: this.state.tag.concat(e.value) });
-    console.log(this.state.tag);
+  tagSelectHandleChange = (event) => {
+    const tags = event.map((e) => {
+        return e.value;
+    })
+    console.log(tags)
+    this.setState({ tag: tags });
   };
 
   handleSubmit(event) {
     event.preventDefault();
+    const tags = this.state.tag
+    const sendTags = [...tags, this.state.maintag]
     const task = {
       name: this.state.name,
       description: this.state.description,
       isPrivate: this.state.isPrivate,
-      tags: [this.state.tag],
+      tags: sendTags,
     };
 
     const token = localStorage.getItem("token");
@@ -65,11 +71,13 @@ class create extends React.Component {
       .then((res) => {
         console.log("record submit");
         console.log(res);
+        this.props.history.push("/");
       })
       .catch((error) => {
         console.log(error.response);
       });
   }
+
 
   render() {
     const customStyles = {
