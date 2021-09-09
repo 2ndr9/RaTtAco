@@ -173,6 +173,25 @@ class top extends React.Component {
             <br />
             RTA!
           </Link>
+          <button
+            onClick={() => {
+              const token = localStorage.getItem("token");
+
+              if (token === null) {
+                console.log("ログインしてないよ");
+                this.props.history.push("/");
+              } else {
+                console.log("ログインしてるよ");
+                localStorage.removeItem("token");
+                console.log("ログアウトしたよ");
+                this.props.history.push("/");
+              }
+            }}
+          >
+            ログアウト
+          </button>
+
+          {/* <MyPage isLoggedIn={isLoggedIn} /> */}
         </section>
       </div>
     );
