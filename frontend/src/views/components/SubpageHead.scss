@@ -35,6 +35,9 @@
         &1 {
             background-image: url(../../img/theme/cooking.jpg);
         }
+        &20 {
+            background-image: url(../../img/theme/mypage.jpg);
+        }
     }
 
     // ranking page
@@ -63,6 +66,16 @@
         }
         &7, &8 {
             background-image: url(../../img/theme/tasks/tsukurioki.jpg);
+            background-position: center -45px;
+        }
+        &9, &13 {
+            background-image: url(../../img/theme/mypage.jpg);
+        }
+        &10, &11 {
+            background-image: url(../../img/theme/tasks/bathroom.jpg);
+        }
+        &12 {
+            background-image: url(../../img/theme/tasks/dish.jpg);
             background-position: center -45px;
         }
     }
