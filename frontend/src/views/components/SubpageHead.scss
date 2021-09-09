@@ -29,4 +29,15 @@
         background-image: url(../../img/theme/record.jpg);
         background-position: center -30px;
     }
+
+    // ranking page
+    &.taskID_ {
+        &1 {
+            background-image: url(../../img/theme/tasks/medama.png);
+        }
+        &2 {
+            background-image: url(../../img/theme/tasks/tamago.jpg);
+            background-position: center -60px;
+        }
+    }
 }

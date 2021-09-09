@@ -27,7 +27,7 @@ class ranking extends React.Component {
   render() {
   return (
     <div>
-      <SubpageHead title={this.state.taskName} name="tasks" categoryTag="cooking" />
+      <SubpageHead title={this.state.taskName} name={"taskID_" + this.state.root_id} categoryTag="cooking" />
       <TagList tags={this.state.tags}/>
       <RankingList records={this.state.records} />
     </div>
