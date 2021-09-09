@@ -26,6 +26,9 @@ function StopWatch(props) {
     setIsActive(true);
     setIsPaused(!isPaused);
     props.gettime(e);
+    if (isPaused){
+      setTime(0);
+    }
   };
 
   const handleReset = () => {
