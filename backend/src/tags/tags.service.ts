@@ -1,4 +1,9 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  forwardRef,
+  Inject,
+  Injectable,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TasksService } from 'src/tasks/tasks.service';
 import { Repository } from 'typeorm';
@@ -13,6 +18,7 @@ export class TagsService {
     private readonly tagsRepository: Repository<Tag>,
     @InjectRepository(TagTask)
     private readonly tagTaskRepository: Repository<TagTask>,
+    @Inject(forwardRef(() => TasksService))
     private readonly taskService: TasksService,
   ) {}
 

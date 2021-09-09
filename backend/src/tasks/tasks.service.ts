@@ -2,6 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserTask } from 'src/record/userTask.entity';
 import { Tag } from 'src/tags/tags.entity';
+import { TagsService } from 'src/tags/tags.service';
 import { TagTask } from 'src/tags/tagTask.entity';
 import { Repository } from 'typeorm';
 import { createTaskDTO, GetRankingDTO, GetTasksOfGivenTag } from './tasks.dto';
@@ -18,6 +19,7 @@ export class TasksService {
     private readonly tagTaskRepository: Repository<TagTask>,
     @InjectRepository(UserTask)
     private readonly userTaskRepository: Repository<UserTask>,
+    private readonly tagService: TagsService,
   ) {}
 
   async createTask(createTaskDTO: createTaskDTO): Promise<void> {
@@ -27,7 +29,13 @@ export class TasksService {
       createTaskDTO.isPrivate,
     );
     try {
-      await this.tasksRepository.save(task);
+      const savedTask = await this.tasksRepository.save(task);
+      createTaskDTO.tags.forEach(async (tag) => {
+        await this.tagService.createTagAsNeededAndAttachToTask(
+          tag,
+          savedTask.id,
+        );
+      });
     } catch (e: any) {
       throw new BadRequestException(e.detail);
     }

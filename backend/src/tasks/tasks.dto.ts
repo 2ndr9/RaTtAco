@@ -9,6 +9,8 @@ export class createTaskDTO {
   description!: string;
   @ApiProperty()
   isPrivate!: boolean;
+  @ApiProperty()
+  tags!: string[];
 }
 
 export class TagOfGetRanking {
