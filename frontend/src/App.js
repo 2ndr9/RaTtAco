@@ -16,7 +16,6 @@ import Footer from "./views/components/Footer";
 import Auth from "./Auth";
 import Val from "./Val";
 import "./App.scss";
-import NotFound from "./views/pages/404/404";
 
 class App extends React.Component {
   constructor() {
