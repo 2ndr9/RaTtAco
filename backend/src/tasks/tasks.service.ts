@@ -4,7 +4,7 @@ import { UserTask } from 'src/record/userTask.entity';
 import { Tag } from 'src/tags/tags.entity';
 import { TagTask } from 'src/tags/tagTask.entity';
 import { Repository } from 'typeorm';
-import { createTaskDTO, GetRankingDTO, TagOfGetRanking } from './tasks.dto';
+import { createTaskDTO, GetRankingDTO, GetTasksOfGivenTag } from './tasks.dto';
 import { Task } from './tasks.entity';
 
 @Injectable()
@@ -12,6 +12,8 @@ export class TasksService {
   constructor(
     @InjectRepository(Task)
     private readonly tasksRepository: Repository<Task>,
+    @InjectRepository(Tag)
+    private readonly tagRepository: Repository<Tag>,
     @InjectRepository(TagTask)
     private readonly tagTaskRepository: Repository<TagTask>,
     @InjectRepository(UserTask)
@@ -86,6 +88,33 @@ export class TasksService {
       res.records.push(record);
     });
 
+    return res;
+  }
+
+  async getTasksOfGivenTag(tagID: number): Promise<GetTasksOfGivenTag> {
+    const tag = await this.tagRepository.findOne({ where: { id: tagID } });
+    if (!tag) throw new BadRequestException('not found tag of given tag id.');
+
+    const tagTasks = await this.tagTaskRepository.find({
+      where: { tagID: tagID },
+      relations: ['task', 'tag'],
+    });
+    const tasks =
+      tagTasks != []
+        ? tagTasks.map((tagTask) => {
+            return {
+              id: tagTask.task.id,
+              name: tagTask.task.name,
+              isPrivate: tagTask.task.isPrivate,
+              description: tagTask.task.description,
+            };
+          })
+        : [];
+    const res = {
+      tagID: tagID,
+      tagName: tag.name,
+      tasks: tasks,
+    };
     return res;
   }
 }

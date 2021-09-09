@@ -16,7 +16,7 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { createTaskDTO, GetRankingDTO } from './tasks.dto';
+import { createTaskDTO, GetRankingDTO, GetTasksOfGivenTag } from './tasks.dto';
 import { Task } from './tasks.entity';
 import { TasksService } from './tasks.service';
 
@@ -53,5 +53,16 @@ export class TasksController {
   async getRanking(@Param('taskID') taskID: number): Promise<GetRankingDTO> {
     const res = await this.tasksService.getRanking(taskID);
     return res;
+  }
+
+  @Get(':tagID')
+  @ApiParam({ name: 'tagID' })
+  @ApiResponse({
+    type: GetTasksOfGivenTag,
+  })
+  async getTasksOfGivenTag(
+    @Param('tagID') tagID: number,
+  ): Promise<GetTasksOfGivenTag> {
+    return await this.tasksService.getTasksOfGivenTag(tagID);
   }
 }

@@ -44,3 +44,23 @@ export class GetRankingDTO {
   @ApiProperty({ type: RecordOfGetRanking, isArray: true })
   records!: RecordOfGetRanking[];
 }
+
+export class TaskOFgetTasksOfGivenTag {
+  @ApiProperty()
+  id!: number;
+  @ApiProperty()
+  name!: string;
+  @ApiProperty()
+  isPrivate!: boolean;
+  @ApiProperty()
+  description!: string;
+}
+
+export class GetTasksOfGivenTag {
+  @ApiProperty()
+  tagID!: number;
+  @ApiProperty()
+  tagName!: string;
+  @ApiProperty()
+  tasks!: TaskOFgetTasksOfGivenTag[];
+}
