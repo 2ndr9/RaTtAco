@@ -21,12 +21,14 @@ export default class TagSelect extends Component {
       console.log("error!!");
     }
   };
+
   handleChange = (newValue, actionMeta) => {
     console.group("Value Changed");
     console.log(newValue);
     console.log(`action: ${actionMeta.action}`);
     console.groupEnd();
   };
+
   render() {
     const tags = this.state;
     let options = [];

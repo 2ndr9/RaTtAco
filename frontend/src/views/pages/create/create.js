@@ -15,10 +15,11 @@ class create extends React.Component {
       name: "",
       description: "",
       isPrivate: true,
-      tag: "1",
+      tag: [],
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleInputChange(event) {
@@ -31,13 +32,18 @@ class create extends React.Component {
     console.log(value);
   }
 
+  handleChange = (e) => {
+    this.setState({ tag: this.state.tag.concat(e.value) });
+    console.log(this.state.tag);
+  };
+
   handleSubmit(event) {
     event.preventDefault();
     const task = {
       name: this.state.name,
       description: this.state.description,
       isPrivate: this.state.isPrivate,
-      tags: [this.state.value],
+      tags: [this.state.tag],
     };
 
     const token = localStorage.getItem("token");
@@ -109,13 +115,12 @@ class create extends React.Component {
           </label>
           <Select
             name="tag"
-            type=""
             options={options}
             placeholder=""
             styles={customStyles}
-            onChange={this.handleInputChange}
+            onChange={this.handleChange}
           />
-          <TagSelect onChange={this.handleInputChange} />
+          <TagSelect type="tag" onChange={this.handleInputChange} />
           <button
             onClick={this.handleSubmit}
             type="submit"
