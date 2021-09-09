@@ -9,6 +9,7 @@ import "../register/register.scss";
 class Login extends React.Component {
   constructor() {
     super();
+    
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     const token = localStorage.getItem("token");
@@ -19,6 +20,13 @@ class Login extends React.Component {
       isLogedIn: true,
       error: "",
     };
+  }
+
+  handleRedirect(){
+    const token = localStorage.getItem("token");
+    if (token !== null) {
+      this.props.history.push("/");
+    }
   }
 
   handleInputChange(event) {
@@ -49,20 +57,13 @@ class Login extends React.Component {
         localStorage.setItem("token", res.data.access_token);
         console.log(res);
         console.log(res.data);
-        this.judgeLogin()
+        this.handleRedirect()
       })
       .catch((error) => {
         console.log(error.response);
         this.setState({ error: error.response.message });
       });
   }
-
-  judgeLogin(){
-    if (this.token !== null) {
-      return (<Redirect to={'/'} />);
-    }
-  }
-
 
   render() {
     return (

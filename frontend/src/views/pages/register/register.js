@@ -58,19 +58,17 @@ class register extends React.Component {
         localStorage.setItem("token", res.data.access_token);
         console.log("hoge");
         console.log(res);
-        this.judgeLogin()
+        const token = localStorage.getItem("token");
+        if (token !== null) {
+          this.props.history.push("/");
+        }
       })
       .catch((error) => {
         console.log(error.response);
       });
+      console.log("正しく登録されませんでした")
   }
 
-  judgeLogin(){
-    const token = localStorage.getItem("token");
-    if (token !== null) {
-      return (<Redirect to={'/'} />);
-    }
-  }
 
   render() {
     return (

@@ -55,10 +55,20 @@ class App extends React.Component {
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/create" component={create} />
-            <Route exact path="/record" component={record} />
             <Route path="/tag/:id" component={result} />
             <Route exact path="/categories" component={categories} />
             <Route path="/ranking/:id" component={ranking} />
+            <Auth>
+              <Switch>
+                <Route exact path="/record" component={record} />
+              </Switch>
+            </Auth>
+            <Val>
+              <Switch>
+                <Route exact path="/register" component={Register} />
+                <Route exact path="/login" component={Login} />
+              </Switch>
+            </Val>
             <Route component={not_found} />
           </Switch>
         </main>
