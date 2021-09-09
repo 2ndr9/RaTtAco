@@ -19,7 +19,7 @@ class record extends React.Component {
       startback: null,
       endback: null,
     };
-    
+
     this.timerEvent = React.createRef();
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSelectChange = this.handleSelectChange.bind(this);
@@ -42,8 +42,8 @@ class record extends React.Component {
     this.setState({
       task: event.value,
     });
-    console.log("changed")
-    console.log(this.state.task)
+    console.log("changed");
+    console.log(this.state.task);
   }
 
   gettime(event) {
@@ -115,39 +115,43 @@ class record extends React.Component {
       });
   }
 
-  getTasks(event){
+  getTasks(event) {
     const target = event.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
     axios
-      .get("http://20.63.164.137:3000/tasks/"+value)
+      .get("http://20.63.164.137:3000/tasks/" + value)
       .then((res) => {
-        console.log("hoge")
+        console.log("hoge");
         console.log(res.data);
         this.setState(res.data);
         this.ChangeRegulations();
         console.log(this.state);
       })
       .catch((error) => {
-        console.log("namu")
+        console.log("namu");
         console.log(error);
       });
   }
 
-
-  ChangeRegulations(){
+  ChangeRegulations() {
     const RegulationTags = [];
     const tasks = this.state.tasks;
-    for (const i in tasks){
-        RegulationTags.push({value: tasks[i].id, label: tasks[i].name })
+    for (const i in tasks) {
+      RegulationTags.push({ value: tasks[i].id, label: tasks[i].name });
     }
     this.setState({
-        options: RegulationTags
-    })
-    console.log(this.state.options)
+      options: RegulationTags,
+    });
+    console.log(this.state.options);
   }
 
   render() {
     const customStyles = {
+      container: (provided) => ({
+        ...provided,
+        backgroundColor: "yellow",
+        margin: "1rem 0",
+      }),
       menu: () => ({}),
       menuList: (provided) => ({
         ...provided,
@@ -191,7 +195,11 @@ class record extends React.Component {
           </div>
           <div className="one-to-one_form">
             <label for="regulation">レギュレーション</label>
-            <Select options={this.state.options} styles={customStyles} onChange={this.handleSelectChange}/>
+            <Select
+              options={this.state.options}
+              styles={customStyles}
+              onChange={this.handleSelectChange}
+            />
           </div>
         </form>
         <StopWatch gettime={this.gettime} resetTime={this.resetTime} />
