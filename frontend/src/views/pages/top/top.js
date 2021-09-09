@@ -53,11 +53,17 @@ class top extends React.Component {
     this.state = {
       value: "",
       suggestions: [],
-      login: token,
+      
     };
     this.getMe();
     this.getJson();
     this.onChange = this.onChange.bind(this);
+  }
+
+  componentDidMount(){
+    this.setState({
+      login: token,
+    })
   }
 
   onChange = (event, { newValue, method }) => {
@@ -175,22 +181,22 @@ class top extends React.Component {
             RTA!
           </Link>
 
-          {this.state.login ? (
-          <button
-            onClick={() => {
-              const atoken = localStorage.getItem("token");
-              if (atoken === null) {
-                console.log("ログインしてないよ");
-              } else {
-                localStorage.removeItem("token");
-                this.setState({login: null})
-              }
-            }}
-          >
-            ログアウト
-          </button>
+          {!this.state.login ? (
+          <></>
           ):(
-          　<></>
+            <button
+              onClick={() => {
+                const atoken = localStorage.getItem("token");
+                if (atoken === null) {
+                  console.log("ログインしてないよ");
+                } else {
+                  localStorage.removeItem("token");
+                  this.setState({login: null})
+                }
+              }}
+            >
+              ログアウト
+            </button>
           )}
 
           {/* <MyPage isLoggedIn={isLoggedIn} /> */}
