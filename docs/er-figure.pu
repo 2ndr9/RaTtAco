@@ -7,10 +7,9 @@ hide circle
 ' skinparam linetype ortho
 
 entity "User" {
-    ID : number
+    userID : number
     name : string
     bio : string
-    email : Email
     password : string
 }
 
@@ -23,9 +22,9 @@ entity "Task" {
 
 entity "UserTask" {
     ID : number
-    start-time : Date
-    end-time : Date
-
+    startTime : number 
+    endTime : number
+    duration : number
     --
     userID : number
     taskID : number
