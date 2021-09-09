@@ -91,12 +91,12 @@ export class TasksService {
     return res;
   }
 
-  async getTasksOfGivenTag(tagID: number): Promise<GetTasksOfGivenTag> {
-    const tag = await this.tagRepository.findOne({ where: { id: tagID } });
+  async getTasksOfGivenTag(tagName: string): Promise<GetTasksOfGivenTag> {
+    const tag = await this.tagRepository.findOne({ where: { name: tagName } });
     if (!tag) throw new BadRequestException('not found tag of given tag id.');
 
     const tagTasks = await this.tagTaskRepository.find({
-      where: { tagID: tagID },
+      where: { tagID: tag.id },
       relations: ['task', 'tag'],
     });
     const tasks =
@@ -111,7 +111,7 @@ export class TasksService {
           })
         : [];
     const res = {
-      tagID: tagID,
+      tagID: tag.id,
       tagName: tag.name,
       tasks: tasks,
     };

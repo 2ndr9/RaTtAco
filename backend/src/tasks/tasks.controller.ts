@@ -55,14 +55,14 @@ export class TasksController {
     return res;
   }
 
-  @Get(':tagID')
-  @ApiParam({ name: 'tagID' })
+  @Get(':tagName')
+  @ApiParam({ name: 'tagName' })
   @ApiResponse({
     type: GetTasksOfGivenTag,
   })
   async getTasksOfGivenTag(
-    @Param('tagID') tagID: number,
+    @Param('tagName') tagName: string,
   ): Promise<GetTasksOfGivenTag> {
-    return await this.tasksService.getTasksOfGivenTag(tagID);
+    return await this.tasksService.getTasksOfGivenTag(tagName);
   }
 }
