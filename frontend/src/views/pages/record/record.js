@@ -1,6 +1,7 @@
 import React from "react";
 import StopWatch from "../../components/StopWatch";
 import SubpageHead from "../../components/SubpageHead";
+import Select from "react-select";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import categoryTags from "../../components/categoryTags";
@@ -18,11 +19,14 @@ class record extends React.Component {
       startback: null,
       endback: null,
     };
+    
     this.timerEvent = React.createRef();
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSelectChange = this.handleSelectChange.bind(this);
     this.gettime = this.gettime.bind(this);
     this.resetTime = this.resetTime.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.getTasks = this.getTasks.bind(this);
   }
 
   handleInputChange(event) {
@@ -32,6 +36,14 @@ class record extends React.Component {
     this.setState({
       [name]: value,
     });
+  }
+
+  handleSelectChange(event) {
+    this.setState({
+      task: event.value,
+    });
+    console.log("changed")
+    console.log(this.state.task)
   }
 
   gettime(event) {
@@ -103,9 +115,55 @@ class record extends React.Component {
       });
   }
 
-  endPass() {}
+  getTasks(event){
+    const target = event.target;
+    const value = target.type === "checkbox" ? target.checked : target.value;
+    axios
+      .get("http://20.63.164.137:3000/tasks/"+value)
+      .then((res) => {
+        console.log("hoge")
+        console.log(res.data);
+        this.setState(res.data);
+        this.ChangeRegulations();
+        console.log(this.state);
+      })
+      .catch((error) => {
+        console.log("namu")
+        console.log(error);
+      });
+  }
+
+
+  ChangeRegulations(){
+    const RegulationTags = [];
+    const tasks = this.state.tasks;
+    for (const i in tasks){
+        RegulationTags.push({value: tasks[i].id, label: tasks[i].name })
+    }
+    this.setState({
+        options: RegulationTags
+    })
+    console.log(this.state.options)
+  }
 
   render() {
+    const customStyles = {
+      menu: () => ({}),
+      menuList: (provided) => ({
+        ...provided,
+        backgroundColor: "#fff",
+        border: "1px solid hsl(0, 0%, 80%)",
+        borderRadius: "5px 5px 0 0",
+        maxHeight: "10rem",
+        bottom: "52px",
+        position: "absolute",
+        width: "100%",
+      }),
+      option: (provided) => ({
+        ...provided,
+        backgroundColor: "#fff",
+      }),
+    };
     const radio_list = [];
     for (const i in categoryTags) {
       // console.log(categoryTags[i].label);
@@ -115,7 +173,8 @@ class record extends React.Component {
             type="radio"
             id={categoryTags[i].value}
             name="categoryTag"
-            value={categoryTags[i].value}
+            value={categoryTags[i].label}
+            onChange={this.getTasks}
           />
           <label for={categoryTags[i].value}>{categoryTags[i].label}</label>
         </div>
@@ -132,15 +191,7 @@ class record extends React.Component {
           </div>
           <div className="one-to-one_form">
             <label for="regulation">レギュレーション</label>
-            <select
-              name="task"
-              value={this.state.task}
-              onChange={this.handleInputChange}
-            >
-              <option value="1">掃除</option>
-              <option value="2">料理</option>
-              <option value="3">洗濯</option>
-            </select>
+            <Select options={this.state.options} styles={customStyles} onChange={this.handleSelectChange}/>
           </div>
         </form>
         <StopWatch gettime={this.gettime} resetTime={this.resetTime} />
