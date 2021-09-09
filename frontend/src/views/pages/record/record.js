@@ -2,6 +2,7 @@ import React from "react";
 import StopWatch from "../../components/StopWatch";
 import SubpageHead from "../../components/SubpageHead";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 import "../../components/general.scss";
 import "./record.scss";
@@ -18,8 +19,9 @@ class record extends React.Component {
     };
     this.timerEvent = React.createRef();
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.getTime = this.getTime.bind(this);
+    this.gettime = this.gettime.bind(this);
     this.resetTime = this.resetTime.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleInputChange(event) {
@@ -31,11 +33,11 @@ class record extends React.Component {
     });
   }
 
-  getTime(event) {
+  gettime(event) {
     const now = new Date();
     const nameBack = event.target.name + "back";
     this.setState({
-      [nameBack]: now,
+      [nameBack]: now.getTime(),
     });
     const Year = now.getFullYear();
     const Month = now.getMonth() + 1;
@@ -62,6 +64,7 @@ class record extends React.Component {
     this.setState({
       [name]: Now,
     });
+    console.log(this.state);
   }
 
   resetTime() {
@@ -71,6 +74,32 @@ class record extends React.Component {
       startback: null,
       endback: null,
     });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    const user = {
+      taskID: this.state.task,
+      startTime: this.state.startback,
+      endTime: this.state.endback,
+    };
+
+    const token = localStorage.getItem("token");
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+
+    axios
+      .post("http://20.63.164.137:3000/record", user, {
+        headers: headers,
+      })
+      .then((res) => {
+        console.log("record submit");
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
   }
 
   endPass() {}
@@ -94,7 +123,7 @@ class record extends React.Component {
             </select>
           </div>
         </form>
-        <StopWatch getTime={this.getTime} resetTime={this.resetTime} />
+        <StopWatch gettime={this.gettime} resetTime={this.resetTime} />
         <form onSubmit={this.handleSubmit}>
           <div className="one-to-one_form">
             <label for="start_time">タイマースタート</label>
@@ -127,7 +156,7 @@ class record extends React.Component {
         ) : (
           <Link
             to={"/ranking/" + this.state.task}
-            onClick={this.endPass}
+            onClick={this.handleSubmit}
             className="button-wide-blue mt2"
           >
             登録
