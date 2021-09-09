@@ -75,7 +75,6 @@ class register extends React.Component {
   render() {
     return (
       <div id="register">
-        {this.judgeLogin}
         <SubpageHead title="新規登録" name="register" />
         <p>赤枠は必須項目です。</p>
         <form className="one-to-one_form" onSubmit={this.handleSubmit}>
