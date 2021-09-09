@@ -8,7 +8,7 @@ class TaskCard extends React.Component {
         <div>
           <h2>{this.props.taskTitle}</h2>
           <p>{this.props.taskInfo}</p>
-          <Link to="/ranking/1" class="button-wide-red icon-crown">
+          <Link to="/ranking/1" className="button-wide-red icon-crown">
             ランキング
           </Link>
         </div>

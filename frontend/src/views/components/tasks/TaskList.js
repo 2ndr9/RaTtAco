@@ -9,13 +9,13 @@ class TaskList extends React.Component {
     for (const i in taskList) {
       taskCardWrapper.push(
         <TaskCard
-          taskTitle={taskList[i].label}
-          taskName={taskList[i].value}
+          taskTitle={taskList[i].name}
+          taskName={taskList[i].id}
           taskInfo={taskList[i].description}
         />
       );
     }
-    console.log(taskCardWrapper);
+    // console.log(taskCardWrapper);
     return (
       <section id="taskList">
         {taskCardWrapper}
