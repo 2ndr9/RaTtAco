@@ -7,7 +7,7 @@ import TaskList from "../../components/tasks/TaskList";
 class result extends React.Component {
   constructor(props) {
     super();
-    this.state = { root_id: props.match.params.id };
+    this.state = { root_id: props.match.params.id, tagID: "" };
     this.getJson();
   }
 
@@ -26,12 +26,13 @@ class result extends React.Component {
   render() {
     console.log(this.state);
     const resultList = this.state.tasks;
-    console.log(resultList);
+    const tagID = this.state.tagID;
+    // console.log(resultList);
     return (
       <div>
         <SubpageHead
           title={"「" + this.state.root_id + "」の検索結果"}
-          name="record"
+          name={"tagID_" + tagID}
         />
         <TaskList tasks={resultList} />
       </div>

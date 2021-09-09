@@ -30,6 +30,13 @@
         background-position: center -30px;
     }
 
+    // Search Result
+    &.tagID_ {
+        &1 {
+            background-image: url(../../img/theme/cooking.jpg);
+        }
+    }
+
     // ranking page
     &.taskID_ {
         &1 {
@@ -37,7 +44,26 @@
         }
         &2 {
             background-image: url(../../img/theme/tasks/tamago.jpg);
+            background-position: center -65px;
+        }
+        &3 {
+            background-image: url(../../img/theme/tasks/omrice.jpg);
             background-position: center -60px;
+        }
+        &4 {
+            background-image: url(../../img/theme/tasks/yakisoba.jpg);
+        }
+        &5 {
+            background-image: url(../../img/theme/tasks/rice.jpg);
+            background-position: center -60px;
+        }
+        &6 {
+            background-image: url(../../img/theme/tasks/miso.jpg);
+            background-position: center -45px;
+        }
+        &7, &8 {
+            background-image: url(../../img/theme/tasks/tsukurioki.jpg);
+            background-position: center -45px;
         }
     }
 }
