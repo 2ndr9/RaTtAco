@@ -197,7 +197,7 @@ class top extends React.Component {
                 }
               }}
             >
-              ログアウト
+              <i className="fas fa-sign-out-alt"></i>
             </button>
           )}
 
