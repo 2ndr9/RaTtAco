@@ -10,7 +10,7 @@ class CategoriesCard extends React.Component {
           <h2>{this.props.taskTitle}</h2>
           <p>{this.props.taskInfo}</p>
           <Link
-            to={"/tag/" + this.props.taskName}
+            to={"/tag/" + this.props.taskTitle}
             class="button-wide-blue icon-run"
           >
             種目一覧
