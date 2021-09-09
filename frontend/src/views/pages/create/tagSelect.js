@@ -23,10 +23,11 @@ export default class TagSelect extends Component {
   };
 
   handleChange = (newValue, actionMeta) => {
-    console.group("Value Changed");
-    console.log(newValue);
-    console.log(`action: ${actionMeta.action}`);
-    console.groupEnd();
+    {
+      newValue.map((e) => {
+        this.props.tagSelectHandleChange(e);
+      });
+    }
   };
 
   render() {

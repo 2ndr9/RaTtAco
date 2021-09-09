@@ -37,6 +37,13 @@ class create extends React.Component {
     console.log(this.state.tag);
   };
 
+  tagSelectHandleChange = (e) => {
+    const tag = this.state.tag;
+    // tag.push(e.value);
+    this.setState({ tag: this.state.tag.concat(e.value) });
+    console.log(this.state.tag);
+  };
+
   handleSubmit(event) {
     event.preventDefault();
     const task = {
@@ -120,7 +127,10 @@ class create extends React.Component {
             styles={customStyles}
             onChange={this.handleChange}
           />
-          <TagSelect type="tag" onChange={this.handleInputChange} />
+          <TagSelect
+            type="tag"
+            tagSelectHandleChange={this.tagSelectHandleChange}
+          />
           <button
             onClick={this.handleSubmit}
             type="submit"
