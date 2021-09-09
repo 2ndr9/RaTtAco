@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import "./tasks.scss";
-
 class TaskCard extends React.Component {
   render() {
     return (

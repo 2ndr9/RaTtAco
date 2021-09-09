@@ -1,6 +1,6 @@
 import React from "react";
-import SubpageHead from "./SubpageHead";
-import Image404 from "../../img/theme/404.PNG";
+import SubpageHead from "../../components/SubpageHead";
+import Image404 from "../../../img/theme/404.PNG";
 
 import "./404.scss";
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Switch} from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import ScrollToTop from "./views/components/ScrollToTop";
 
@@ -7,21 +7,23 @@ import top from "./views/pages/top/top";
 import Register from "./views/pages/register/register";
 import Login from "./views/pages/login/login";
 import record from "./views/pages/record/record";
-import tasks from "./views/pages/tasks/tasks";
+import categories from "./views/pages/categories/categories";
 import result from "./views/pages/result/result";
 import ranking from "./views/pages/ranking/ranking.jsx";
+import not_found from "./views/pages/404/404";
 import Header from "./views/components/Header";
 import Footer from "./views/components/Footer";
-import  Auth  from './Auth';
-import  Val  from './Val';
+import Auth from "./Auth";
+import Val from "./Val";
 import "./App.scss";
+import NotFound from "./views/pages/404/404";
 
 class App extends React.Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
-      isLogedIn:false
-    }
+      isLogedIn: false,
+    };
   }
 
   render() {
@@ -47,19 +49,17 @@ class App extends React.Component {
         </Helmet>
         <ScrollToTop />
         <Header />
-        <main> 
+        <main>
           <Switch>
             <Route exact path="/" component={top} />
-            <Route exact path="/register" component={Register}/>
-            <Route exact path="/login"  component={Login}/>
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
             <Route exact path="/record" component={record} />
             <Route path="/tag/:id" component={result} />
-            <Route exact path="/tasks" component={tasks} />
+            <Route exact path="/categories" component={categories} />
             <Route path="/ranking/:id" component={ranking} />
+            <Route component={not_found} />
           </Switch>
-
-          
-
         </main>
         <Footer />
       </BrowserRouter>
@@ -68,4 +68,3 @@ class App extends React.Component {
 }
 
 export default App;
-

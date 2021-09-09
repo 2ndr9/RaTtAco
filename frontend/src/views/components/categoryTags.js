@@ -1,5 +1,5 @@
 const categoryTags = [
-  { value: "cooking", label: "料理" },
+  { value: "cooking", label: "料理", description: "" },
   { value: "cleaning", label: "掃除" },
   { value: "washing", label: "洗濯" },
   { value: "shopping", label: "買い出し" },
