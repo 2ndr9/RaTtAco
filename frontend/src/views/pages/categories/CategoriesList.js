@@ -1,24 +1,24 @@
 import React from "react";
-import TaskCard from "./TaskCard";
+import CategoriesCard from "./CategoriesCard";
 
-class TaskList extends React.Component {
+class CategoriesList extends React.Component {
   render() {
-    const taskList = this.props.tasks;
+    const categories = this.props.tasks;
     // console.log(taskList);
-    const taskCardWrapper = [];
-    for (const i in taskList) {
-      taskCardWrapper.push(
-        <TaskCard
-          taskTitle={taskList[i].label}
-          taskName={taskList[i].value}
-          taskInfo={taskList[i].description}
+    const categoriesCardWrapper = [];
+    for (const i in categories) {
+      categoriesCardWrapper.push(
+        <CategoriesCard
+          taskTitle={categories[i].label}
+          taskName={categories[i].value}
+          taskInfo={categories[i].description}
         />
       );
     }
-    console.log(taskCardWrapper);
+    console.log(categoriesCardWrapper);
     return (
       <section id="taskList">
-        {taskCardWrapper}
+        {categoriesCardWrapper}
         {/* <TaskCard
           taskTitle="掃除"
           taskName="cleaning"
@@ -39,4 +39,4 @@ class TaskList extends React.Component {
   }
 }
 
-export default TaskList;
+export default CategoriesList;

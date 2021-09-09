@@ -7,6 +7,7 @@ import top from "./views/pages/top/top";
 import Register from "./views/pages/register/register";
 import Login from "./views/pages/login/login";
 import record from "./views/pages/record/record";
+import create from "./views/pages/create/create";
 import categories from "./views/pages/categories/categories";
 import result from "./views/pages/result/result";
 import ranking from "./views/pages/ranking/ranking.jsx";
@@ -53,6 +54,7 @@ class App extends React.Component {
             <Route exact path="/" component={top} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/create" component={create} />
             <Route exact path="/record" component={record} />
             <Route path="/tag/:id" component={result} />
             <Route exact path="/categories" component={categories} />
