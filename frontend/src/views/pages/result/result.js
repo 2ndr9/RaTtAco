@@ -1,20 +1,38 @@
 import React from "react";
-// import { Link } from "react-router-dom";
+import axios from "axios";
+
 import SubpageHead from "../../components/SubpageHead";
 import TaskList from "../../components/tasks/TaskList";
 
 class result extends React.Component {
+  constructor(props) {
+    super();
+    this.state = { root_id: props.match.params.id };
+    this.getJson();
+  }
+
+  getJson = async () => {
+    try {
+      const url = "http://20.63.164.137:3000/tasks/" + this.state.root_id;
+      const encoded = encodeURI(url);
+      await axios.get(encoded).then((res) => {
+        this.setState(res.data);
+      });
+    } catch (error) {
+      console.log("error!!");
+    }
+  };
+
   render() {
-    const dummy = "料理";
+    const resultList = this.state.tasks;
+    console.log(resultList);
     return (
       <div>
-        {/* <SubpageHead title={this.props.word} name="record" /> */}
-        <SubpageHead title={"「" + dummy + "」の検索結果"} name="record" />
-        {/* dummmy */}
-        {/* <Link to={"/tag/" + this.props.name} className="tag">
-          {this.props.name}
-        </Link> */}
-        <TaskList />
+        <SubpageHead
+          title={"「" + this.state.root_id + "」の検索結果"}
+          name="record"
+        />
+        <TaskList tasks={resultList} />
       </div>
     );
   }
