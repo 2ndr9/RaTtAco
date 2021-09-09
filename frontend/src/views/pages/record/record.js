@@ -3,6 +3,7 @@ import StopWatch from "../../components/StopWatch";
 import SubpageHead from "../../components/SubpageHead";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import categoryTags from "../../components/categoryTags";
 
 import "../../components/general.scss";
 import "./record.scss";
@@ -105,6 +106,21 @@ class record extends React.Component {
   endPass() {}
 
   render() {
+    const radio_list = [];
+    for (const i in categoryTags) {
+      // console.log(categoryTags[i].label);
+      radio_list.push(
+        <div className="radio_component">
+          <input
+            type="radio"
+            id={categoryTags[i].value}
+            name="categoryTag"
+            value={categoryTags[i].value}
+          />
+          <label for={categoryTags[i].value}>{categoryTags[i].label}</label>
+        </div>
+      );
+    }
     return (
       <div>
         <SubpageHead title="Let's RTA!" name="record" />
@@ -112,6 +128,10 @@ class record extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <div className="one-to-one_form">
             <label for="task">種目</label>
+            <div class="radio_wrapper">{radio_list}</div>
+          </div>
+          <div className="one-to-one_form">
+            <label for="regulation">レギュレーション</label>
             <select
               name="task"
               value={this.state.task}

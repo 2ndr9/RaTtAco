@@ -67,7 +67,6 @@ class Login extends React.Component {
   render() {
     return (
       <div id="login">
-        {this.judgeLogin()}
         <SubpageHead title="ログイン" name="login" />
         <form className="one-to-one_form" onSubmit={this.handleSubmit}>
           <label for="userID" class="required">

@@ -1,5 +1,38 @@
 @import "../../../color.scss";
 
+.radio_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: .5rem;
+    row-gap: .5rem;
+}
+
+.radio_component {
+    display: flex;
+    align-items: center;
+    input {
+        display: none;
+        width: 1rem;
+        margin-right: .5rem;
+        filter: none;
+        &:checked + label {
+            border: 2px solid $blue;
+            background-color: $blue;
+            color: $white;
+        }
+    }
+    label {
+        padding: .5rem .7rem;
+        border-radius: .5rem;
+        border: 2px solid lighten($blue, 20);
+        color: $blue;
+        font-weight: 500;
+        height: min-content;
+        transition: .2s;
+    }
+}
+
+
 .input_timer:disabled {
     background-color: $white;
 }
