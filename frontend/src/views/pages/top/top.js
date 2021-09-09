@@ -154,7 +154,7 @@ class top extends React.Component {
 
           <h1>種目検索</h1>
 
-          <form>
+          <form onSubmit={this.handleToSearchResult}>
             <Autosuggest
               suggestions={suggestions}
               onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
@@ -164,7 +164,7 @@ class top extends React.Component {
               renderInputComponent={renderInputComponent}
               inputProps={inputProps}
             />
-            <button onClick={this.handleToSearchResult} id="search-button">
+            <button value="Submit" id="search-button">
               <i className="fas fa-search"></i>
             </button>
           </form>
