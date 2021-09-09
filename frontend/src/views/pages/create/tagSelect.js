@@ -21,12 +21,15 @@ export default class TagSelect extends Component {
       console.log("error!!");
     }
   };
+
   handleChange = (newValue, actionMeta) => {
-    console.group("Value Changed");
-    console.log(newValue);
-    console.log(`action: ${actionMeta.action}`);
-    console.groupEnd();
+    {
+      newValue.map((e) => {
+        this.props.tagSelectHandleChange(e);
+      });
+    }
   };
+
   render() {
     const tags = this.state;
     let options = [];
@@ -55,6 +58,7 @@ export default class TagSelect extends Component {
     };
     return (
       <CreatableSelect
+        name="tag"
         isMulti
         onChange={this.handleChange}
         className="tagSelect"
