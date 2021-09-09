@@ -53,7 +53,6 @@ class top extends React.Component {
     this.state = {
       value: "",
       suggestions: [],
-      
     };
     this.getMe();
     this.getJson();
@@ -63,6 +62,8 @@ class top extends React.Component {
   componentDidMount(){
     this.setState({
       login: token,
+    },()=>{
+      console.log(this.state.login)
     })
   }
 
@@ -185,6 +186,7 @@ class top extends React.Component {
           <></>
           ):(
             <button
+              id = "button_logout"
               onClick={() => {
                 const atoken = localStorage.getItem("token");
                 if (atoken === null) {
