@@ -51,7 +51,6 @@ class App extends React.Component {
               <Route exact path="/register" component={Register}/>
               <Route exact path="/login"  component={Login}/>
             </Switch>
-
           <Switch>
             <Route exact path="/" component={top} />
             <Auth>

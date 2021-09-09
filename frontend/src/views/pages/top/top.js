@@ -81,6 +81,15 @@ const renderInputComponent = (inputProps) => (
   </div>
 );
 
+  const token = localStorage.getItem("token")
+  const baseurl = 'http://20.63.164.137:3000/';
+  const authAxios = axios.create({
+    baseURL: baseurl,
+    headers:{ 
+      Authorization: `Bearer ${token}`
+    },
+  });
+
 
 class top extends React.Component {
   constructor() {
@@ -105,14 +114,12 @@ class top extends React.Component {
   };
 
   getMe = async () => {
-    try {    
-      const url = 'http://20.63.164.137:3000/users/me';
-      const token = localStorage.getItem('token') 
-      const header = 'Authorization: Bearer '+ token
-      await axios.get(url,{ headers: { header } }).then(res => {
+    try {     
+      await authAxios.get('/users/me').then(res => {
         this.setState(res.data);
+        console.log(this.state)
       });
-      console.log(this.state)
+    
     } catch (error) {    
       console.log(error);
     }

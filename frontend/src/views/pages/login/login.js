@@ -6,24 +6,19 @@ import { Link,Redirect } from "react-router-dom";
 import "../../components/forms.scss";
 import "../register/register.scss";
 
-class login extends React.Component {
+class Login extends React.Component {
   constructor() {
     super();
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     const token = localStorage.getItem("token");
-   
+    console.log(token)
     this.state = {
       userID: "",
       password: "",
       isLogedIn: true,
       error: "",
     };
-    if (token === null) {
-      this.setState({
-        isLogedIn:false
-      })
-    }
   }
 
   handleInputChange(event) {
@@ -54,6 +49,7 @@ class login extends React.Component {
         localStorage.setItem("token", res.data.access_token);
         console.log(res);
         console.log(res.data);
+        this.judgeLogin()
       })
       .catch((error) => {
         console.log(error.response);
@@ -61,12 +57,17 @@ class login extends React.Component {
       });
   }
 
-  render() {
-    if (this.state.isLogedIn){
+  judgeLogin(){
+    if (this.token ===null) {
       return (<Redirect to={'/'} />);
-    }else{
+    }
+  }
+
+
+  render() {
     return (
       <div id="login">
+        {this.judgeLogin()}
         <SubpageHead title="ログイン" name="login" />
         <form className="one-to-one_form" onSubmit={this.handleSubmit}>
           <label for="userID" class="required">
@@ -102,6 +103,5 @@ class login extends React.Component {
     );
     }
   }
-}
 
-export default login;
+export default Login;

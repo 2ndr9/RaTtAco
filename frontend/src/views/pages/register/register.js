@@ -58,20 +58,24 @@ class register extends React.Component {
         localStorage.setItem("token", res.data.access_token);
         console.log("hoge");
         console.log(res);
-        this.setState({
-          isLogedIn: true,
-        });
+        this.judgeLogin()
       })
       .catch((error) => {
         console.log(error.response);
       });
   }
-  render() {
-    if (this.state.isLogedIn){
+
+  judgeLogin(){
+    const token = localStorage.getItem("token");
+    if (token !== null) {
       return (<Redirect to={'/'} />);
     }
+  }
+
+  render() {
     return (
       <div id="register">
+        {this.judgeLogin}
         <SubpageHead title="新規登録" name="register" />
         <p>赤枠は必須項目です。</p>
         <form className="one-to-one_form" onSubmit={this.handleSubmit}>
