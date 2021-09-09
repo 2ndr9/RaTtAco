@@ -53,6 +53,7 @@ class top extends React.Component {
     this.state = {
       value: "",
       suggestions: [],
+      login: token,
     };
     this.getMe();
     this.getJson();
@@ -173,23 +174,24 @@ class top extends React.Component {
             <br />
             RTA!
           </Link>
+
+          {this.state.login ? (
           <button
             onClick={() => {
-              const token = localStorage.getItem("token");
-
-              if (token === null) {
+              const atoken = localStorage.getItem("token");
+              if (atoken === null) {
                 console.log("ログインしてないよ");
-                this.props.history.push("/");
               } else {
-                console.log("ログインしてるよ");
                 localStorage.removeItem("token");
-                console.log("ログアウトしたよ");
-                this.props.history.push("/");
+                this.setState({login: null})
               }
             }}
           >
             ログアウト
           </button>
+          ):(
+          　<></>
+          )}
 
           {/* <MyPage isLoggedIn={isLoggedIn} /> */}
         </section>
