@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Autosuggest from "react-autosuggest";
 import swim_rattaco from "../../../img/icon/icon.svg";
-
+import axios from "axios";
 import "./top.scss";
 
 const tasks = [
@@ -81,14 +81,24 @@ const renderInputComponent = (inputProps) => (
   </div>
 );
 
+  const token = localStorage.getItem("token")
+  const baseurl = 'http://20.63.164.137:3000/';
+  const authAxios = axios.create({
+    baseURL: baseurl,
+    headers:{ 
+      Authorization: `Bearer ${token}`
+    },
+  });
+
+
 class top extends React.Component {
   constructor() {
     super();
-
     this.state = {
       value: "",
       suggestions: [],
     };
+    this.getMe()
   }
 
   onChange = (event, { newValue, method }) => {
@@ -101,6 +111,18 @@ class top extends React.Component {
 
   onSuggestionsClearRequested = () => {
     this.setState({ suggestions: [] });
+  };
+
+  getMe = async () => {
+    try {     
+      await authAxios.get('/users/me').then(res => {
+        this.setState(res.data);
+        console.log(this.state)
+      });
+    
+    } catch (error) {    
+      console.log(error);
+    }
   };
 
   render() {

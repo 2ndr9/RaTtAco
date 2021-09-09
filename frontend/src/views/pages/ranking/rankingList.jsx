@@ -25,7 +25,7 @@ class RankingList extends React.Component {
     console.log(records)
     const list = []
     for(const i in records){
-      list.push(<RankingCard time={this.timeAssets(records[i].durationTime)} name={records[i].userName} date={this.dateAssets(records[i].startTime)}/>);
+      list.push(<RankingCard time={this.timeAssets(records[i].durationTime)} name={records[i].userName} date={this.dateAssets(records[i].startTime)} key={records[i].rank}/>);
     }
     return (
       <section id="ranking">
