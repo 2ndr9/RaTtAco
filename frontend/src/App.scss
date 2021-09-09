@@ -113,25 +113,3 @@ form {
   margin-right: .5rem;
 }
 
-#toform {
-  z-index: 100;
-  text-decoration: none;
-  position: fixed;
-  // font-size: 3rem;
-  font-size: 1.4rem;
-  font-weight: 600;
-  line-height: 1.2;
-  right: 1rem;
-  bottom: 1rem;
-  background-color: $red;
-  color: $white;
-  padding: .5rem;
-  width: 5rem;
-  height: 5rem;
-  box-sizing: border-box;
-  text-align: center;
-  border-radius: 2.5rem;
-  border: 8px solid $yellow;
-  filter: drop-shadow(2px 2px 3px rgba($grey, .5));
-}
-
