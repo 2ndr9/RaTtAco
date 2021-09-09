@@ -3,47 +3,10 @@ import { Link } from "react-router-dom";
 import Autosuggest from "react-autosuggest";
 import swim_rattaco from "../../../img/icon/icon.svg";
 import axios from "axios";
+import { withRouter } from "react-router";
 import "./top.scss";
 
-const tasks = [
-  {
-    name: "料理",
-    hira: "りょうり",
-  },
-  {
-    name: "掃除",
-    hira: "そうじ",
-  },
-  {
-    name: "洗濯",
-    hira: "せんたく",
-  },
-  {
-    name: "散歩",
-    hira: "さんぽ",
-  },
-  {
-    name: "皿洗い",
-    hira: "さらあらい",
-  },
-  {
-    name: "魚",
-    hira: "さかな",
-  },
-  {
-    name: "鮭",
-    hira: "さけ",
-  },
-  {
-    name: "侍",
-    hira: "さむらい",
-  },
-  {
-    name: "焼きそば作り",
-    hira: "やきそばづくり",
-  },
-  //...
-];
+let tasks = [];
 
 function escapeRegexCharacters(str) {
   return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -58,7 +21,7 @@ function getSuggestions(value) {
 
   const regex = new RegExp("^" + escapedValue, "i");
 
-  return tasks.filter((task) => regex.test(task.name) || regex.test(task.hira));
+  return tasks.filter((task) => regex.test(task.name) || regex.test(task.yomi));
 }
 
 function getSuggestionValue(suggestion) {
@@ -66,13 +29,7 @@ function getSuggestionValue(suggestion) {
 }
 
 function renderSuggestion(suggestion) {
-  return (
-    // <div>
-    //   <Link to="/tasks" id="totasks" className={"suggestionContainer"}>
-    <span>{suggestion.name}</span>
-    //   </Link>
-    // </div>
-  );
+  return <span>{suggestion.name}</span>;
 }
 
 const renderInputComponent = (inputProps) => (
@@ -98,10 +55,13 @@ class top extends React.Component {
       suggestions: [],
     };
     this.getMe();
+    this.getJson();
+    this.onChange = this.onChange.bind(this);
   }
 
   onChange = (event, { newValue, method }) => {
     this.setState({ value: newValue });
+    // setSearchURL(newValue);
   };
 
   onSuggestionsFetchRequested = ({ value }) => {
@@ -112,15 +72,30 @@ class top extends React.Component {
     this.setState({ suggestions: [] });
   };
 
+  getJson = async () => {
+    try {
+      const url = "http://20.63.164.137:3000/tags/";
+      const encoded = encodeURI(url);
+      await axios.get(encoded).then((res) => {
+        tasks = res.data;
+      });
+    } catch (error) {
+      console.log("error!!");
+    }
+  };
+
   getMe = async () => {
     try {
       await authAxios.get("/users/me").then((res) => {
         this.setState(res.data);
-        console.log(this.state);
       });
     } catch (error) {
       console.log(error);
     }
+  };
+
+  handleToSearchResult = () => {
+    this.props.history.push("/tag/" + this.state.value);
   };
 
   render() {
@@ -188,17 +163,15 @@ class top extends React.Component {
               renderSuggestion={renderSuggestion}
               renderInputComponent={renderInputComponent}
               inputProps={inputProps}
-              placeholder="hoge"
             />
-            <Link to="/tag/" id="search-button">
+            <button onClick={this.handleToSearchResult} id="search-button">
               <i className="fas fa-search"></i>
-            </Link>
+            </button>
           </form>
           <Link to="/record" id="toform">
             Let's
             <br />
             RTA!
-            {/* <i class="fas fa-stopwatch"></i> */}
           </Link>
         </section>
       </div>
@@ -206,4 +179,4 @@ class top extends React.Component {
   }
 }
 
-export default top;
+export default withRouter(top);
