@@ -9,9 +9,9 @@ export class CreateTagDTO {
 
 export class GetAllTag {
   @ApiProperty()
-  @IsNotEmpty()
   id!: number;
   @ApiProperty()
-  @IsNotEmpty()
   name!: string;
+  @ApiProperty()
+  yomi!: string;
 }

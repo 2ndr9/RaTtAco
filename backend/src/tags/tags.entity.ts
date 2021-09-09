@@ -9,10 +9,14 @@ export class Tag {
   @Column({ unique: true })
   name: string;
 
+  @Column()
+  yomi: string;
+
   @OneToMany(() => TagTask, (tagTask) => tagTask.tag)
   tagTask!: TagTask[];
 
-  constructor(name: string) {
+  constructor(name: string, yomi: string) {
     this.name = name;
+    this.yomi = yomi;
   }
 }

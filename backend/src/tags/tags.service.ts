@@ -5,6 +5,7 @@ import {
   Injectable,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import axios from 'axios';
 import { TasksService } from 'src/tasks/tasks.service';
 import { Repository } from 'typeorm';
 import { GetAllTag } from './tags.dto';
@@ -35,10 +36,29 @@ export class TagsService {
       },
     });
 
+    const yomi = existingTag
+      ? existingTag.yomi
+      : (
+          await axios({
+            method: 'post',
+            url: 'https://labs.goo.ne.jp/api/hiragana',
+            headers: {
+              // 'content-type': `application/x-www-form-urlencoded`,
+              'content-type': `application/json`,
+            },
+            data: {
+              app_id:
+                '20b6581c612552377a3f7d0bed7debfeea6b18353adf6bef3b44b4a7339054d3',
+              sentence: tagName,
+              output_type: 'hiragana',
+            },
+          })
+        ).data.converted;
+
     // あったらそのまま、なかったらつくったtag
     const tag = existingTag
       ? existingTag
-      : await this.tagsRepository.save(new Tag(tagName));
+      : await this.tagsRepository.save(new Tag(tagName, yomi));
 
     const existingTagTask = await this.tagTaskRepository.findOne({
       where: { tagID: tag.id, taskID: taskID },
