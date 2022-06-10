@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import axios from "axios";
 
 import CreatableSelect from "react-select/creatable";
-import Tag from "../ranking/tag";
 
 export default class TagSelect extends Component {
   constructor(props) {

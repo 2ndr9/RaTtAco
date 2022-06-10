@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import SubpageHead from "../../components/SubpageHead";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import "../../components/forms.scss";
 import "../register/register.scss";
