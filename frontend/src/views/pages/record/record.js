@@ -102,7 +102,7 @@ class record extends React.Component {
     };
 
     axios
-      .post("http://20.63.164.137:3000/record", user, {
+      .post("https://rattaco-backend.herokuapp.com/record", user, {
         headers: headers,
       })
       .then((res) => {
@@ -118,7 +118,7 @@ class record extends React.Component {
     const target = event.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
     axios
-      .get("http://20.63.164.137:3000/tasks/" + value)
+      .get("https://rattaco-backend.herokuapp.com/tasks/" + value)
       .then((res) => {
         console.log("hoge");
         console.log(res.data);

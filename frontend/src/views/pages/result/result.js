@@ -13,7 +13,8 @@ class result extends React.Component {
 
   getJson = async () => {
     try {
-      const url = "http://20.63.164.137:3000/tasks/" + this.state.root_id;
+      const url =
+        "https://rattaco-backend.herokuapp.com/tasks/" + this.state.root_id;
       const encoded = encodeURI(url);
       await axios.get(encoded).then((res) => {
         this.setState(res.data);

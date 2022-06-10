@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import SubpageHead from "../../components/SubpageHead";
-import { Link,Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import "../../components/forms.scss";
 import "../register/register.scss";
@@ -9,11 +9,11 @@ import "../register/register.scss";
 class Login extends React.Component {
   constructor() {
     super();
-    
+
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     const token = localStorage.getItem("token");
-    console.log(token)
+    console.log(token);
     this.state = {
       userID: "",
       password: "",
@@ -22,7 +22,7 @@ class Login extends React.Component {
     };
   }
 
-  handleRedirect(){
+  handleRedirect() {
     const token = localStorage.getItem("token");
     if (token !== null) {
       this.props.history.push("/");
@@ -50,14 +50,14 @@ class Login extends React.Component {
       "Content-Type": "application/json",
     };
     axios
-      .post("http://20.63.164.137:3000/auth/login",  user ,  {
+      .post("https://rattaco-backend.herokuapp.com/auth/login", user, {
         headers: headers,
       })
       .then((res) => {
         localStorage.setItem("token", res.data.access_token);
         console.log(res);
         console.log(res.data);
-        this.handleRedirect()
+        this.handleRedirect();
       })
       .catch((error) => {
         console.log(error.response);
@@ -101,7 +101,7 @@ class Login extends React.Component {
         </form>
       </div>
     );
-    }
   }
+}
 
 export default Login;

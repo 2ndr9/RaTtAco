@@ -39,7 +39,7 @@ const renderInputComponent = (inputProps) => (
 );
 
 const token = localStorage.getItem("token");
-const baseurl = "http://20.63.164.137:3000/";
+const baseurl = "https://rattaco-backend.herokuapp.com/";
 const authAxios = axios.create({
   baseURL: baseurl,
   headers: {
@@ -59,12 +59,15 @@ class top extends React.Component {
     this.onChange = this.onChange.bind(this);
   }
 
-  componentDidMount(){
-    this.setState({
-      login: token,
-    },()=>{
-      console.log(this.state.login)
-    })
+  componentDidMount() {
+    this.setState(
+      {
+        login: token,
+      },
+      () => {
+        console.log(this.state.login);
+      }
+    );
   }
 
   onChange = (event, { newValue, method }) => {
@@ -82,7 +85,7 @@ class top extends React.Component {
 
   getJson = async () => {
     try {
-      const url = "http://20.63.164.137:3000/tags/";
+      const url = "https://rattaco-backend.herokuapp.com/tags/";
       const encoded = encodeURI(url);
       await axios.get(encoded).then((res) => {
         tasks = res.data;
@@ -183,17 +186,17 @@ class top extends React.Component {
           </Link>
 
           {!this.state.login ? (
-          <></>
-          ):(
+            <></>
+          ) : (
             <button
-              id = "button_logout"
+              id="button_logout"
               onClick={() => {
                 const atoken = localStorage.getItem("token");
                 if (atoken === null) {
                   console.log("ログインしてないよ");
                 } else {
                   localStorage.removeItem("token");
-                  this.setState({login: null})
+                  this.setState({ login: null });
                 }
               }}
             >

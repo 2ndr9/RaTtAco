@@ -8,7 +8,6 @@ import axios from "axios";
 import "../../components/forms.scss";
 import "./create.scss";
 
-
 class create extends React.Component {
   constructor(props) {
     super(props);
@@ -35,23 +34,23 @@ class create extends React.Component {
 
   handleChange = (e) => {
     console.log(e.label);
-    const maintag = e.label
+    const maintag = e.label;
     this.setState({ maintag: maintag });
-    console.log(maintag)
+    console.log(maintag);
   };
 
   tagSelectHandleChange = (event) => {
     const tags = event.map((e) => {
-        return e.value;
-    })
-    console.log(tags)
+      return e.value;
+    });
+    console.log(tags);
     this.setState({ tag: tags });
   };
 
   handleSubmit(event) {
     event.preventDefault();
-    const tags = this.state.tag
-    const sendTags = [...tags, this.state.maintag]
+    const tags = this.state.tag;
+    const sendTags = [...tags, this.state.maintag];
     const task = {
       name: this.state.name,
       description: this.state.description,
@@ -65,7 +64,7 @@ class create extends React.Component {
     };
 
     axios
-      .post("http://20.63.164.137:3000/tasks", task, {
+      .post("https://rattaco-backend.herokuapp.com/tasks", task, {
         headers: headers,
       })
       .then((res) => {
@@ -77,7 +76,6 @@ class create extends React.Component {
         console.log(error.response);
       });
   }
-
 
   render() {
     const customStyles = {

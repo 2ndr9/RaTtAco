@@ -9,12 +9,11 @@ export default class TagSelect extends Component {
     super(props);
     this.state = {};
     this.getJson();
-
   }
 
   getJson = async () => {
     try {
-      const url = "http://20.63.164.137:3000/tags";
+      const url = "https://rattaco-backend.herokuapp.com/tags";
       await axios.get(url).then((res) => {
         this.setState(res.data);
       });
@@ -29,8 +28,8 @@ export default class TagSelect extends Component {
   //       return e.value;
   //     })
   //   return tags
-  // }; 
-    
+  // };
+
   // handleChange = (newValue, actionMeta) => {
   //   {
   //     newValue.map((e) => {
@@ -69,7 +68,9 @@ export default class TagSelect extends Component {
       <CreatableSelect
         name="tag"
         isMulti
-        onChange={(e) => {this.props.tagSelectHandleChange(e);}}
+        onChange={(e) => {
+          this.props.tagSelectHandleChange(e);
+        }}
         className="tagSelect"
         styles={customStyles}
         options={options}

@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Link,Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import SubpageHead from "../../components/SubpageHead";
 
@@ -11,7 +11,7 @@ class register extends React.Component {
   constructor() {
     super();
     const token = localStorage.getItem("token");
-    
+
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
@@ -24,8 +24,8 @@ class register extends React.Component {
     };
     if (token === null) {
       this.setState({
-        isLogedIn:false
-      })
+        isLogedIn: false,
+      });
     }
   }
 
@@ -51,7 +51,7 @@ class register extends React.Component {
       "Content-Type": "application/json",
     };
     axios
-      .post("http://20.63.164.137:3000/auth/register", user, {
+      .post("https://rattaco-backend.herokuapp.com/auth/register", user, {
         headers: headers,
       })
       .then((res) => {
@@ -66,9 +66,8 @@ class register extends React.Component {
       .catch((error) => {
         console.log(error.response);
       });
-      console.log("正しく登録されませんでした")
+    console.log("正しく登録されませんでした");
   }
-
 
   render() {
     return (
