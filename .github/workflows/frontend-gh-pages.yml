@@ -27,8 +27,7 @@ jobs:
         run: |
           npm i
           npm run build
-          pwd
-          ls
+          npm run postbuild
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.ref == 'refs/heads/main' }}
