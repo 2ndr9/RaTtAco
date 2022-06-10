@@ -28,7 +28,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Helmet>
           <script
             src="https://kit.fontawesome.com/bdacb9a226.js"
