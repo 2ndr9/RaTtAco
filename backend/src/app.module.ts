@@ -14,18 +14,20 @@ import { UserTask } from './record/userTask.entity';
 import { RecordModule } from './record/record.module';
 import { Tag } from './tags/tags.entity';
 import { TagTask } from './tags/tagTask.entity';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'rattaco-local',
-      password: 'rattaco-pass',
-      database: 'rattaco',
+      type: 'postgres',
+      url: process.env.DATABASE_URL,
       entities: [User, Task, UserTask, Tag, TagTask],
       synchronize: true,
+      ssl: {
+        rejectUnauthorized: false,
+      },
+      autoLoadEntities: true,
     }),
     UsersModule,
     TasksModule,

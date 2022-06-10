@@ -45,7 +45,7 @@ export class TasksService {
     return await this.tasksRepository.find({ relations: ['tagTask'] });
   }
 
-  async findOne(id: number): Promise<Task | undefined> {
+  async findOne(id: number): Promise<Task | null> {
     return await this.tasksRepository.findOne({ where: { id: id } });
   }
 
